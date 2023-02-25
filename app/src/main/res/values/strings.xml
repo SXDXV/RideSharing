@@ -1,0 +1,23 @@
+<resources>
+    <string name="prompt_email"></string>
+    <string name="prompt_password"></string>
+    <string name="action_sign_in_short"></string>
+    <string name="action_sign_in"></string>
+
+    <string name="app_name">RideSharing</string>
+    <string name="frag_auth">Authentication</string>
+    <string name="frag_reg">Registration</string>
+    <string name="text_email">Email</string>
+    <string name="text_name">Name</string>
+    <string name="text_phone">Phone number</string>
+    <string name="text_all_fields">All fields are required</string>
+    <string name="text_password">Password</string>
+    <string name="text_password_confirm">Confirm Password</string>
+    <string name="text_check_remember">remember me</string>
+    <string name="text_btn_login">login</string>
+    <string name="text_btn_reg">registration</string>
+    <string name="text_btn_auth">cancel</string>
+    <string name="frag_register">Registration</string>
+    <string name="text_reg_first">Have no account?</string>
+    <string name="text_reg_second">Register it now!</string>
+</resources>
