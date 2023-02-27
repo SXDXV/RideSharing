@@ -18,6 +18,12 @@ public class Login extends AppCompatActivity {
         loadFragment(FragmentLoginAuth.newInstance());
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
     public void loadFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();

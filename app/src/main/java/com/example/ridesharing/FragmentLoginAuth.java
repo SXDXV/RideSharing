@@ -1,5 +1,6 @@
 package com.example.ridesharing;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 public class FragmentLoginAuth extends Fragment {
     Button login;
     TextView toRegistration;
+    Intent toHome;
 
     public FragmentLoginAuth() {
     }
@@ -39,7 +41,8 @@ public class FragmentLoginAuth extends Fragment {
         View.OnClickListener listenerLogin = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Переход на домашнюю активность
+                toHome = new Intent(getContext(), Home.class);
+                startActivity(toHome);
             }
         };
         login.setOnClickListener(listenerLogin);

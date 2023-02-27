@@ -28,7 +28,7 @@ public class FragmentLoginReg extends Fragment {
         View.OnClickListener listenerReg = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                swipeFragment();
             }
         };
         register.setOnClickListener(listenerReg);
@@ -36,14 +36,18 @@ public class FragmentLoginReg extends Fragment {
         View.OnClickListener listenerLogin = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment authetication = FragmentLoginAuth.newInstance();
-                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_left,
-                        R.anim.exit_to_right).replace(R.id.fragmentLogin, authetication).commit();
+                swipeFragment();
             }
         };
         toAuthentication.setOnClickListener(listenerLogin);
 
         return view;
+    }
+
+    public void swipeFragment (){
+        Fragment authetication = FragmentLoginAuth.newInstance();
+        getFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_left,
+                R.anim.exit_to_right).replace(R.id.fragmentLogin, authetication).commit();
     }
 
     public static FragmentLoginReg newInstance(){

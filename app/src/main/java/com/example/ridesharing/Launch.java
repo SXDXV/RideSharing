@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class Launch extends AppCompatActivity {
 
@@ -42,7 +44,10 @@ public class Launch extends AppCompatActivity {
         }, 0, 500); // каждые 0.5 секунды
 
         ImageView im = findViewById(R.id.imageView2);
-        Glide.with(this).load(R.drawable.car).into(im);
+        Glide.with(this)
+                .load(R.drawable.full_ridesharing)
+                //.apply(RequestOptions.bitmapTransform(new BlurTransformation(25,3)))
+                .into(im);
     }
 
     private void timerTick() {
@@ -52,7 +57,7 @@ public class Launch extends AppCompatActivity {
     private Runnable doTask = new Runnable() {
         public void run() {
             switch (time){
-                case 4:
+                case 2:
                     if (!checkRememberUserSettings){
                         next = new Intent(Launch.this, Login.class);
                     }else{

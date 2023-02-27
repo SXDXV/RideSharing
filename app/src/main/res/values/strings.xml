@@ -20,4 +20,11 @@
     <string name="frag_register">Registration</string>
     <string name="text_reg_first">Have no account?</string>
     <string name="text_reg_second">Register it now!</string>
+
+    <string name="menu_search">search</string>
+    <string name="menu_publish">publish</string>
+    <string name="menu_your_trips">trips</string>
+    <string name="menu_chat">chat</string>
+    <string name="menu_profile">profile</string>
+
 </resources>
