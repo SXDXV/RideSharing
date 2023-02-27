@@ -27,4 +27,7 @@
     <string name="menu_chat">chat</string>
     <string name="menu_profile">profile</string>
 
+    <string name="fragment_trips_your_trips">Your trips</string>
+
+
 </resources>

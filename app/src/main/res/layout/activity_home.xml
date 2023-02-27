@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
+    <FrameLayout
+        android:id="@+id/fragmentHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
