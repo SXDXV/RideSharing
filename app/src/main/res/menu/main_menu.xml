@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/men_search"
+        android:title="@string/menu_search"
+        android:icon="@drawable/search"/>
+    <item
+        android:id="@+id/men_publish"
+        android:title="@string/menu_publish"
+        android:icon="@drawable/publish"/>
+    <item
+        android:id="@+id/men_trips"
+        android:title="@string/menu_your_trips"
+        android:checked="true"
+        android:icon="@drawable/trips"/>
+    <item
+        android:id="@+id/men_chat"
+        android:title="@string/menu_chat"
+        android:icon="@drawable/chat"/>
+    <item
+        android:id="@+id/men_profile"
+        android:title="@string/menu_profile"
+        android:icon="@drawable/profile"/>
+
+</menu>
