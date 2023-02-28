@@ -30,7 +30,7 @@
     <string name="fragment_search_search">Search trip</string>
     <string name="fragment_search_from">From</string>
     <string name="fragment_search_to">To</string>
-    <string name="fragment_search_count_peoples">How many people are traveling:</string>
+    <string name="fragment_search_count_peoples">How many people are traveling?</string>
     <string name="fragment_search_pick_up">Pick up fellow travelers</string>
     <string name="fragment_search_date">When do you want to travel?</string>
 

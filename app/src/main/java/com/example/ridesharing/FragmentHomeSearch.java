@@ -7,17 +7,56 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 public class FragmentHomeSearch extends Fragment{
+    View view;
+
+    CardView searchCard;
+    TextInputLayout from;
+    String txtFrom;
+
+    TextInputLayout to;
+    String txtTo;
+
+    TextInputLayout date;
+    String txtDate;
+
+
     public FragmentHomeSearch() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home_search, container, false);
+        view = inflater.inflate(R.layout.fragment_home_search, container, false);
+
+        componentsInit();
+
+
+        searchCard = view.findViewById(R.id.searchCard);
+        searchCard.getBackground().setAlpha(240);
+
+
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern ("dd/MM/YYYY");
+        date.getEditText().setText(dtf.format(currentDate).toString());
+
+
         return view;
+    }
+
+    public void componentsInit(){
+        from = view.findViewById(R.id.outlinedTextFieldFrom);
+        to = view.findViewById(R.id.outlinedTextFieldTo);
+        date = view.findViewById(R.id.outlinedTextFieldDate);
     }
 
     public static FragmentHomeSearch newInstance(){
