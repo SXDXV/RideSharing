@@ -27,7 +27,17 @@
     <string name="menu_chat">chat</string>
     <string name="menu_profile">profile</string>
 
+    <string name="fragment_search_search">Search trip</string>
+    <string name="fragment_search_from">From</string>
+    <string name="fragment_search_to">To</string>
+    <string name="fragment_search_count_peoples">How many people are traveling:</string>
+    <string name="fragment_search_pick_up">Pick up fellow travelers</string>
+    <string name="fragment_search_date">When do you want to travel?</string>
+
+    <string name="fragment_publish_publish">Publish your trip intent</string>
     <string name="fragment_trips_your_trips">Your trips</string>
+    <string name="fragment_chat_chat">Chat with a fellow traveler</string>
+    <string name="fragment_profile_profile">Your Profile</string>
 
 
 </resources>

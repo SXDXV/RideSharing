@@ -28,22 +28,16 @@ public class FragmentLoginAuth extends Fragment {
         toRegistration = view.findViewById(R.id.textToReg);
         login = view.findViewById(R.id.loginBtn);
 
-        View.OnClickListener listenerReg = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment registration = FragmentLoginReg.newInstance();
-                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,
-                        R.anim.exit_to_left).replace(R.id.fragmentLogin, registration).commit();
-            }
+        View.OnClickListener listenerReg = v -> {
+            Fragment registration = FragmentLoginReg.newInstance();
+            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right,
+                    R.anim.exit_to_left).replace(R.id.fragmentLogin, registration).commit();
         };
         toRegistration.setOnClickListener(listenerReg);
 
-        View.OnClickListener listenerLogin = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toHome = new Intent(getContext(), Home.class);
-                startActivity(toHome);
-            }
+        View.OnClickListener listenerLogin = v -> {
+            toHome = new Intent(getContext(), Home.class);
+            startActivity(toHome);
         };
         login.setOnClickListener(listenerLogin);
 

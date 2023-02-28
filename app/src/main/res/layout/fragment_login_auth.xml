@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -31,6 +30,10 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp"
             android:hint="@string/text_email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -48,6 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:passwordToggleEnabled="true"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp"
             android:hint="@string/text_password">
 
             <com.google.android.material.textfield.TextInputEditText
