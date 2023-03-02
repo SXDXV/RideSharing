@@ -11,6 +11,7 @@
 
     <!--Main color-->
     <color name="main_color">#fbb03b</color>
+    <color name="main_semi_color">#ffebcb</color>
 
     <!--Light Theme-->
     <!--Default components-->

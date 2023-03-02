@@ -33,6 +33,7 @@
     <string name="fragment_search_count_peoples">How many people are traveling?</string>
     <string name="fragment_search_pick_up">Pick up fellow travelers</string>
     <string name="fragment_search_date">When do you want to travel?</string>
+    <string name="fragment_search_map">Or check the map!</string>
 
     <string name="fragment_publish_publish">Publish your trip intent</string>
     <string name="fragment_trips_your_trips">Your trips</string>

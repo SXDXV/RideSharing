@@ -31,7 +31,11 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/text_name">
+            android:hint="@string/text_name"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -47,7 +51,11 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/text_phone">
+            android:hint="@string/text_phone"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -63,7 +71,11 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/text_email">
+            android:hint="@string/text_email"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -80,7 +92,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/text_password"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -98,7 +114,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/text_password_confirm"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

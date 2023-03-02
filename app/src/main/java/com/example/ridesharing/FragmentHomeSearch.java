@@ -14,7 +14,6 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class FragmentHomeSearch extends Fragment{
     View view;
@@ -38,11 +37,11 @@ public class FragmentHomeSearch extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home_search, container, false);
 
-        componentsInit();
+        initComponents();
 
 
-        searchCard = view.findViewById(R.id.searchCard);
-        searchCard.getBackground().setAlpha(240);
+        searchCard = view.findViewById(R.id.searchCardMain);
+        searchCard.getBackground().setAlpha(255);
 
 
         LocalDate currentDate = LocalDate.now();
@@ -53,7 +52,7 @@ public class FragmentHomeSearch extends Fragment{
         return view;
     }
 
-    public void componentsInit(){
+    public void initComponents(){
         from = view.findViewById(R.id.outlinedTextFieldFrom);
         to = view.findViewById(R.id.outlinedTextFieldTo);
         date = view.findViewById(R.id.outlinedTextFieldDate);
