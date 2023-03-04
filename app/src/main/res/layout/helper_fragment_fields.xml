@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fieldNameFragmentSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        style="@style/textHeader"
+        android:text="FieldName" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldSpace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeWidth="1dp"
+        app:boxCornerRadiusBottomEnd="40dp"
+        app:boxCornerRadiusBottomStart="40dp"
+        app:boxCornerRadiusTopEnd="40dp"
+        app:boxCornerRadiusTopStart="40dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/textFields"
+            android:id="@+id/fieldFragmentSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnContinueFragmentSearch"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/text_continue"
+        style="@style/buttonFillShape"/>
+
+</LinearLayout>

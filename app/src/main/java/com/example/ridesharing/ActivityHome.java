@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 
-public class Home extends AppCompatActivity {
+public class ActivityHome extends AppCompatActivity {
     BottomNavigationView navigationView;
     HashMap<Integer, Integer> map;
     public int oldIndex = 3;

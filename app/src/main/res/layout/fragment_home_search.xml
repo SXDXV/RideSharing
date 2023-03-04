@@ -25,13 +25,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            style="@style/textHeader"
             android:id="@+id/textView2"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:fontFamily="sans-serif-black"
             android:layout_marginTop="15dp"
-            android:textSize="30dp"
             android:text="@string/fragment_search_search" />
 
         <androidx.cardview.widget.CardView
@@ -49,68 +48,94 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/outlinedTextFieldFrom"
-                    android:layout_width="match_parent"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:layout_marginTop="20dp"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/searchCardMainFromTo"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/fragment_search_from"
-                    app:startIconDrawable="@drawable/ic_baseline_join_left_24"
-                    app:boxStrokeWidth="0dp"
-                    app:boxBackgroundColor="@color/main_semi_color"
-                    app:boxCornerRadiusBottomEnd="40dp"
-                    app:boxCornerRadiusBottomStart="40dp"
-                    app:boxCornerRadiusTopEnd="40dp"
-                    app:boxCornerRadiusTopStart="40dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                    card_view:cardCornerRadius="40dp"
+                    card_view:cardElevation="20dp"
+                    android:outlineSpotShadowColor="@color/semi_dark"
+                    android:alpha="1.0">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:textColor="@color/light_dark"
-                        android:fontFamily="sans-serif-black"
-                        />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/outlinedTextFieldFrom"
+                            android:layout_width="match_parent"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/fragment_search_from"
+                            app:startIconDrawable="@drawable/ic_baseline_join_left_24"
+                            app:boxStrokeWidth="0dp"
+                            app:boxBackgroundColor="@color/very_light_dark"
+                            app:boxStrokeColor="@color/dark_main"
+                            app:hintTextColor="@color/dark_main"
+                            app:boxCornerRadiusBottomEnd="40dp"
+                            app:boxCornerRadiusBottomStart="40dp"
+                            app:boxCornerRadiusTopEnd="40dp"
+                            app:boxCornerRadiusTopStart="40dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/fieldFrom"
+                                style="@style/textFields"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/outlinedTextFieldTo"
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/outlinedTextFieldTo"
+                            android:layout_width="match_parent"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/fragment_search_to"
+                            android:layout_marginBottom="20dp"
+                            app:startIconDrawable="@drawable/ic_baseline_join_right_24"
+                            app:boxBackgroundColor="@color/very_light_dark"
+                            app:boxStrokeColor="@color/dark_main"
+                            app:hintTextColor="@color/dark_main"
+                            app:boxStrokeWidth="0dp"
+                            app:boxCornerRadiusBottomEnd="40dp"
+                            app:boxCornerRadiusBottomStart="40dp"
+                            app:boxCornerRadiusTopEnd="40dp"
+                            app:boxCornerRadiusTopStart="40dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/textFields"
+                                android:id="@+id/fieldTo"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/imageView3"
                     android:layout_width="match_parent"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/fragment_search_to"
-                    app:startIconDrawable="@drawable/ic_baseline_join_right_24"
-                    app:boxBackgroundColor="@color/main_semi_color"
-                    app:boxStrokeWidth="0dp"
-                    app:boxCornerRadiusBottomEnd="40dp"
-                    app:boxCornerRadiusBottomStart="40dp"
-                    app:boxCornerRadiusTopEnd="40dp"
-                    app:boxCornerRadiusTopStart="40dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:textColor="@color/light_dark"
-                        android:fontFamily="sans-serif-black"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="40dp"
+                    card_view:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
                 <TextView
+                    style="@style/textRegular"
                     android:id="@+id/textViewCountPeople"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:paddingLeft="20dp"
-                    android:textSize="15dp"
-                    android:fontFamily="sans-serif-black"
                     android:gravity="bottom"
                     android:text="@string/fragment_search_count_peoples" />
 
@@ -124,14 +149,13 @@
                     android:layout_marginRight="20dp">
 
                     <Button
+                        style="@style/textRegularBtnFill"
+                        android:textSize="20sp"
                         android:id="@+id/buttonMinus"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_weight="10"
-                        android:textSize="20sp"
                         android:gravity="center"
-                        android:textColor="@color/white"
-                        android:fontFamily="sans-serif-black"
                         android:text="-" />
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -152,37 +176,36 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textFields"
+                            android:id="@+id/fieldPeoples"
+                            android:clickable="false"
+                            android:focusable="false"
                             android:layout_width="80dp"
                             android:layout_height="match_parent"
-                            android:fontFamily="sans-serif-black"
                             android:gravity="center"
-                            android:text="1"
-                            android:textColor="@color/light_dark"
-                            android:textSize="20sp" />
+                            android:text="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
+                        style="@style/textRegularBtnFill"
+                        android:textSize="20sp"
                         android:id="@+id/buttonPlus"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_weight="10"
-                        android:textSize="20sp"
                         android:gravity="center"
-                        android:textColor="@color/white"
-                        android:fontFamily="sans-serif-black"
                         android:text="+" />
 
                 </LinearLayout>
 
                 <TextView
+                    style="@style/textRegular"
                     android:id="@+id/textViewWhen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:paddingLeft="20dp"
-                    android:textSize="15dp"
-                    android:fontFamily="sans-serif-black"
                     android:gravity="bottom"
                     android:text="@string/fragment_search_date" />
 
@@ -202,27 +225,23 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        style="@style/textFields"
+                        android:id="@+id/fieldDate"
+                        android:clickable="false"
+                        android:focusable="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:textColor="@color/light_dark"
-                        android:fontFamily="sans-serif-black"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <CheckBox
+                    style="@style/textRegular"
                     android:id="@+id/checkBoxPickUp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
-                    android:fontFamily="sans-serif-black"
-                    android:textColor="@color/light_dark"
                     android:text="@string/fragment_search_pick_up" />
-
 
             </LinearLayout>
 
@@ -251,14 +270,13 @@
                     card_view:srcCompat="@drawable/map_review" />
 
                 <TextView
+                    style="@style/textFields"
+                    android:textColor="@color/white"
                     android:id="@+id/textView3"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:layout_gravity="center"
-                    android:fontFamily="sans-serif-black"
-                    android:textSize="20dp"
-                    android:textColor="@color/white"
                     android:text="@string/fragment_search_map" />
 
             </FrameLayout>

@@ -2,21 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityLogin">
+    android:orientation="vertical"
+    tools:context=".HelperActivityFields">
 
     <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="106dp"
-        android:layout_height="81dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="90dp"
-        app:srcCompat="@drawable/not_full_ridesharing" />
+        android:id="@+id/imageView4"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24" />
 
     <FrameLayout
-        android:id="@+id/fragmentLogin"
+        android:id="@+id/frameHelperFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

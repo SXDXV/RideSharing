@@ -16,13 +16,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            style="@style/textHeader"
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/frag_auth"
-            android:textSize="30dp" />
+            android:text="@string/frag_auth" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputEmailAuth"
@@ -39,8 +38,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="sans-serif-medium"
-                android:textSize="15dp" />
+                style="@style/textFields" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,9 +58,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="sans-serif-medium"
                 android:inputType="textPassword"
-                android:textSize="15dp" />
+                style="@style/textFields"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,15 +69,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:text="@string/text_check_remember" />
+            android:text="@string/text_check_remember"
+            style="@style/textRegular"/>
 
         <Button
+            style="@style/textRegularBtnFill"
             android:id="@+id/loginBtn"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:textAllCaps="false"
             android:text="@string/text_btn_login"
-            style="@style/Widget.MaterialComponents.Button.Icon"
             />
 
     </LinearLayout>
@@ -97,20 +95,19 @@
         app:layout_constraintVertical_bias="0">
 
         <TextView
+            style="@style/textRegular"
             android:id="@+id/textReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/text_reg_first"
-            android:textSize="14dp" />
+            android:text="@string/text_reg_first" />
 
         <TextView
+            style="@style/textRegular"
+            android:textStyle="bold"
             android:id="@+id/textToReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/text_reg_second"
-            android:textSize="14dp" />
+            android:text="@string/text_reg_second"/>
 
     </LinearLayout>
 

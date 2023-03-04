@@ -14,14 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.concurrent.Executor;
 
 public class FragmentLoginAuth extends Fragment {
     final static String BASE_AUTH = "Auth_sign";
@@ -62,7 +57,7 @@ public class FragmentLoginAuth extends Fragment {
             try {
                 initComponents();
                 sign(emailTxt, passTxt);
-                toHome = new Intent(getContext(), Home.class);
+                toHome = new Intent(getContext(), ActivityHome.class);
                 startActivity(toHome);
             } catch (Exception exception){
                 Log.d(BASE_AUTH, "Log: " + exception);

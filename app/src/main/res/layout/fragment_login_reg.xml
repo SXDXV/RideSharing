@@ -17,13 +17,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            style="@style/textHeader"
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/frag_reg"
-            android:textSize="30dp" />
+            android:text="@string/frag_reg" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputNameReg"
@@ -40,8 +39,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="sans-serif-medium"
-                android:textSize="15dp" />
+                style="@style/textFields" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,8 +58,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="sans-serif-medium"
-                android:textSize="15dp" />
+                style="@style/textFields" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,8 +77,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="sans-serif-medium"
-                android:textSize="15dp" />
+                style="@style/textFields" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,8 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-medium"
-                android:inputType="textPassword"
-                android:textSize="15dp" />
+                style="@style/textFields" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,27 +119,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-medium"
-                android:inputType="textPassword"
-                android:textSize="15dp" />
+                style="@style/textFields" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            style="@style/textRegular"
             android:id="@+id/textReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/text_all_fields"
-            android:textSize="14dp" />
+            android:text="@string/text_all_fields"/>
 
         <Button
             android:id="@+id/registerBtn"
             android:layout_width="150dp"
             android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:textAllCaps="false"
             android:text="@string/text_btn_reg"
-            style="@style/Widget.MaterialComponents.Button.Icon"
+            style="@style/textRegularBtnFill"
             />
 
         <Button
@@ -153,7 +147,7 @@
             android:layout_height="50dp"
             android:textAllCaps="false"
             android:text="@string/text_btn_auth"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/textRegularBtnOutlined"
             />
 
     </LinearLayout>

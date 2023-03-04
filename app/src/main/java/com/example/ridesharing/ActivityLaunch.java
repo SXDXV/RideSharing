@@ -9,14 +9,11 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import jp.wasabeef.glide.transformations.BlurTransformation;
-
-public class Launch extends AppCompatActivity {
+public class ActivityLaunch extends AppCompatActivity {
 
     private static final String USER_SETTINGS = "RS_US";
     SharedPreferences userPreferences;
@@ -59,9 +56,9 @@ public class Launch extends AppCompatActivity {
             switch (time){
                 case 2:
                     if (!checkRememberUserSettings){
-                        next = new Intent(Launch.this, Login.class);
+                        next = new Intent(ActivityLaunch.this, ActivityLogin.class);
                     }else{
-                        next = new Intent(Launch.this, Login.class);
+                        next = new Intent(ActivityLaunch.this, ActivityLogin.class);
                     }
                     startActivity(next);
                     finish();

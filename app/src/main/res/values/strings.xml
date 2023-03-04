@@ -14,12 +14,13 @@
     <string name="text_password">Password</string>
     <string name="text_password_confirm">Confirm Password</string>
     <string name="text_check_remember">remember me</string>
-    <string name="text_btn_login">login</string>
-    <string name="text_btn_reg">registration</string>
+    <string name="text_btn_login">Login</string>
+    <string name="text_btn_reg">Registration</string>
     <string name="text_btn_auth">cancel</string>
     <string name="frag_register">Registration</string>
     <string name="text_reg_first">Have no account?</string>
     <string name="text_reg_second">Register it now!</string>
+    <string name="text_continue">Continue</string>
 
     <string name="menu_search">search</string>
     <string name="menu_publish">publish</string>
