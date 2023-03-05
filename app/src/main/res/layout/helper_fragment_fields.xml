@@ -9,7 +9,7 @@
         android:id="@+id/fieldNameFragmentSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         style="@style/textHeader"
         android:text="FieldName" />
@@ -37,6 +37,14 @@
             android:text="" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ListView
+        android:id="@+id/citiesLV"
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:layout_marginTop="10dp">
+
+    </ListView>
 
     <Button
         android:id="@+id/btnContinueFragmentSearch"
