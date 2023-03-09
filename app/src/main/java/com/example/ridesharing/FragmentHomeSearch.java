@@ -105,7 +105,7 @@ public class FragmentHomeSearch extends Fragment{
 
     public void resizeHeight(View view, int width, int height){
         ClassResizeAnimation resizeAnimation = new ClassResizeAnimation(view, width, height);
-        resizeAnimation.setDuration(600);
+        resizeAnimation.setDuration(400);
         view.startAnimation(resizeAnimation);
     }
 

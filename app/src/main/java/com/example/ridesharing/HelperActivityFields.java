@@ -5,12 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.google.android.material.textfield.TextInputEditText;
+import android.view.View;
 
 public class HelperActivityFields extends AppCompatActivity {
     Bundle bundle = new Bundle();
@@ -23,6 +19,10 @@ public class HelperActivityFields extends AppCompatActivity {
 
 
         loadFragmentFromRight(HelperFragmentFields.newInstance(bundle));
+    }
+
+    public void finishHelper(View view){
+        finish();
     }
 
     public void loadFragmentFromRight(Fragment fragment){
