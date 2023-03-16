@@ -21,6 +21,17 @@
     <string name="text_reg_first">Have no account?</string>
     <string name="text_reg_second">Register it now!</string>
     <string name="text_continue">Continue</string>
+    <string name="text_im_going">I\'m going!</string>
+    <string name="text_fromwhere">Where we go?</string>
+    <string name="text_how_peoples">How many people can you pick up?</string>
+    <string name="text_when">When will you go?</string>
+    <string name="text_price">How much will a seat in your car cost?</string>
+    <string name="text_comment">Want to leave a comment for a fellow?</string>
+    <string name="text_details">And a few more details</string>
+    <string name="text_music">Will you go with music?</string>
+    <string name="text_pets">Companion can take a pets</string>
+    <string name="text_talk">Are you talkative?</string>
+    <string name="text_smoking">Сan smoke in the car?</string>
 
     <string name="menu_search">search</string>
     <string name="menu_publish">publish</string>
@@ -36,7 +47,8 @@
     <string name="fragment_search_date">When do you want to travel?</string>
     <string name="fragment_search_map">Or check the map!</string>
 
-    <string name="fragment_publish_publish">Publish your trip intent</string>
+    <string name="fragment_publish_publish">If you are going somewhere, post your ad here</string>
+    <string name="fragment_publish_publish_main">Let\'s clarify some details</string>
     <string name="fragment_trips_your_trips">Your trips</string>
     <string name="fragment_chat_chat">Chat with a fellow traveler</string>
     <string name="fragment_profile_profile">Your Profile</string>

@@ -27,30 +27,30 @@ public class ActivityHome extends AppCompatActivity {
         navigationView = findViewById(R.id.bottom_navigation);
         navigationView.getMenu().getItem(2).setChecked(true);
 
-        loadFragmentFromLeft(FragmentHomeTrips.newInstance());
+        loadFragmentFromLeft(FragmentHomeTrips.newInstance(),"home");
 
         mapInit();
         navigationView.setOnItemSelectedListener(item -> {
             newIndex = (Integer) map.get(item.getItemId());
             switch (item.getItemId()){
                 case R.id.men_search:
-                    chooseAnimation(oldIndex, newIndex, FragmentHomeSearch.newInstance());
+                    chooseAnimation(oldIndex, newIndex, FragmentHomeSearch.newInstance(), "search");
                     //loadFragment(FragmentHomeSearch.newInstance());
                     return true;
                 case R.id.men_publish:
-                    chooseAnimation(oldIndex, newIndex, FragmentHomePublish.newInstance());
+                    chooseAnimation(oldIndex, newIndex, FragmentHomePublish.newInstance(), "publish");
                     //loadFragment(FragmentHomePublish.newInstance());
                     return true;
                 case R.id.men_trips:
-                    chooseAnimation(oldIndex, newIndex, FragmentHomeTrips.newInstance());
+                    chooseAnimation(oldIndex, newIndex, FragmentHomeTrips.newInstance(), "trips");
                     //loadFragment(FragmentHomeTrips.newInstance());
                     return true;
                 case R.id.men_chat:
-                    chooseAnimation(oldIndex, newIndex, FragmentHomeChat.newInstance());
+                    chooseAnimation(oldIndex, newIndex, FragmentHomeChat.newInstance(), "chat");
                     //loadFragment(FragmentHomeChat.newInstance());
                     return true;
                 case R.id.men_profile:
-                    chooseAnimation(oldIndex, newIndex, FragmentHomeProfile.newInstance());
+                    chooseAnimation(oldIndex, newIndex, FragmentHomeProfile.newInstance(), "profile");
                     //loadFragment(FragmentHomeProfile.newInstance());
                     return true;
             }
@@ -58,30 +58,32 @@ public class ActivityHome extends AppCompatActivity {
         });
     }
 
-    public void loadFragmentFromRight(Fragment fragment){
+    public void loadFragmentFromRight(Fragment fragment, String tag){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
         transaction.replace(R.id.fragmentHome,fragment);
+        transaction.addToBackStack(tag);
         transaction.commit();
     }
 
-    public void loadFragmentFromLeft(Fragment fragment){
+    public void loadFragmentFromLeft(Fragment fragment, String tag){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
         transaction.replace(R.id.fragmentHome,fragment);
+        transaction.addToBackStack(tag);
         transaction.commit();
     }
 
-    public void chooseAnimation(int oldI, int newI, Fragment fragment){
+    public void chooseAnimation(int oldI, int newI, Fragment fragment, String tag){
 
         if (oldI < newI){
-            loadFragmentFromRight(fragment);
+            loadFragmentFromRight(fragment, tag);
         } else if (oldI > newI){
-            loadFragmentFromLeft(fragment);
+            loadFragmentFromLeft(fragment, tag);
         }
         oldIndex = newIndex;
     }

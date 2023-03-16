@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/textHeader"
+                android:id="@+id/textView2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:text="@string/fragment_publish_publish_main" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainFromTo"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="15dp"
+                        android:gravity="bottom"
+                        android:text="@string/text_fromwhere" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldFrom"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment_search_from"
+                        app:startIconDrawable="@drawable/ic_baseline_join_left_24"
+                        app:boxStrokeWidth="0dp"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:boxStrokeColor="@color/dark_main"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fieldFrom"
+                            style="@style/textFields"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldTo"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment_search_to"
+                        android:layout_marginBottom="20dp"
+                        app:startIconDrawable="@drawable/ic_baseline_join_right_24"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:boxStrokeColor="@color/dark_main"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textFields"
+                            android:id="@+id/fieldTo"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainPeoples"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="15dp"
+                        android:gravity="bottom"
+                        android:text="@string/text_how_peoples" />
+
+                    <LinearLayout
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:paddingRight="10dp">
+
+                        <Button
+                            style="@style/textRegularBtnFill"
+                            android:textSize="20sp"
+                            android:id="@+id/buttonMinus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="10"
+                            android:gravity="center"
+                            android:text="-" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/outlinedTextField"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center"
+                            app:startIconDrawable="@drawable/ic_baseline_person_4_24"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:boxCornerRadiusBottomEnd="40dp"
+                            app:boxCornerRadiusBottomStart="40dp"
+                            app:boxCornerRadiusTopEnd="40dp"
+                            app:boxCornerRadiusTopStart="40dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/textFields"
+                                android:id="@+id/fieldPeoples"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:layout_width="80dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                            style="@style/textRegularBtnFill"
+                            android:textSize="20sp"
+                            android:id="@+id/buttonPlus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="10"
+                            android:gravity="center"
+                            android:text="+" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainPrice"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="15dp">
+
+                    <TextView
+                        style="@style/textRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="15dp"
+                        android:gravity="bottom"
+                        android:text="@string/text_when" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldDate"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_date_range_24"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textFields"
+                            android:id="@+id/fieldDate"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainComment"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="15dp">
+
+                    <TextView
+                        style="@style/textRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="15dp"
+                        android:gravity="bottom"
+                        android:text="@string/text_price" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldComment"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_monetization_on_24"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textFields"
+                            android:id="@+id/fieldComment"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainDate"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="15dp">
+
+                    <TextView
+                        style="@style/textRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="15dp"
+                        android:gravity="bottom"
+                        android:text="@string/text_comment" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldPrice"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_message_24"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textFields"
+                            android:id="@+id/fieldPrice"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainDetails"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="15dp">
+
+                    <TextView
+                        style="@style/textRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="15dp"
+                        android:gravity="bottom"
+                        android:text="@string/text_details" />
+
+                    <LinearLayout
+                        android:layout_width="290dp"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            style="@style/textRegular"
+                            android:id="@+id/checkBoxMusic"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_music" />
+                        <CheckBox
+                            style="@style/textRegular"
+                            android:id="@+id/checkBoxAnimals"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_pets" />
+                        <CheckBox
+                            style="@style/textRegular"
+                            android:id="@+id/checkBoxTalk"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_talk" />
+                        <CheckBox
+                            style="@style/textRegular"
+                            android:id="@+id/checkBoxSmoke"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_smoking" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnToPublishMain"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="100dp"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:text="@string/text_continue"
+                style="@style/textRegularBtnFill"
+                />
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
