@@ -17,9 +17,12 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FragmentLoginAuth extends Fragment {
     final static String BASE_AUTH = "Auth_sign";
+    public static String userID;
 
     private Button login;
     private TextView toRegistration;
@@ -30,7 +33,6 @@ public class FragmentLoginAuth extends Fragment {
     private FirebaseAuth mAuth;
 
     private View view;
-    private String userID;
     private String emailTxt;
     private String passTxt;
 
@@ -58,12 +60,9 @@ public class FragmentLoginAuth extends Fragment {
                 initComponents();
                 sign(emailTxt, passTxt);
                 toHome = new Intent(getContext(), ActivityHome.class);
-                startActivity(toHome);
+                //startActivity(toHome);
             } catch (Exception exception){
                 Log.d(BASE_AUTH, "Log: " + exception);
-                Toast toast = Toast.makeText(getContext(),
-                        "Возникли проблемы со входом, проверьте правильность введенных данных", Toast.LENGTH_LONG);
-                toast.show();
             }
         };
         login.setOnClickListener(listenerLogin);
@@ -78,9 +77,10 @@ public class FragmentLoginAuth extends Fragment {
                         Log.d(BASE_AUTH, "signInWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         userID = user.getUid();
+                        startActivity(toHome);
                     } else {
                         Toast toast = Toast.makeText(getContext(),
-                                "Возникли проблемы со входом, проверьте правильность введенных данных", Toast.LENGTH_LONG);
+                                getResources().getString(R.string.toast_invalid_data), Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });

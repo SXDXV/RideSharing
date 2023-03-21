@@ -18,6 +18,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class HelperFragmentFields extends Fragment{
+    View view;
+    private static final String VIEW_NAME = "HelperFragmentFields";
+
     TextView fieldName;
     String txtFieldName;
     TextInputEditText field;
@@ -27,8 +30,6 @@ public class HelperFragmentFields extends Fragment{
 
     Bundle bundleGet;
     Bundle bundleSet;
-
-    View view;
 
     @Nullable
     @Override
@@ -51,25 +52,34 @@ public class HelperFragmentFields extends Fragment{
     @SuppressLint("NonConstantResourceId")
     public void backToSearch(View btn){
         btn.setOnClickListener(v -> {
+            bundleSet = new Bundle();
+            bundleSet.putAll(bundleGet);
             switch (btn.getId()){
                 case R.id.btnContinueFragmentSearch:
-                    bundleSet = new Bundle();
-
                     bundleSet.putString("fieldName", fieldName.getText().toString());
                     bundleSet.putString("fieldText", field.getText().toString());
-                    bundleSet.putAll(bundleGet);
 
-                    loadFragmentFromDown(FragmentHomeSearch.newInstance(bundleSet), "search");
+                    backToParent();
                     break;
                 case R.id.backToSearch:
-                    try {
-                        bundleSet.putAll(bundleGet);
-                    }catch (Exception ignored){}
-                    loadFragmentFromDown(FragmentHomeSearch.newInstance(bundleSet), "search");
+                    bundleSet.putString("fieldName", "null");
+                    bundleSet.putString("fieldText", "null");
+
+                    backToParent();
                     break;
-                default: break;
+                default:
+                    break;
             }
         });
+    }
+
+    public void backToParent(){
+        if (bundleGet.getString("Parent").equals("Search")){
+            loadFragmentFromDown(FragmentHomeSearch.newInstance(bundleSet), "search");
+        }
+        else if (bundleGet.getString("Parent").equals("Publish")){
+            loadFragmentFromDown(FragmentHomePublishMain.newInstance(bundleSet), "publish");
+        }
     }
 
     public void initComponents(){

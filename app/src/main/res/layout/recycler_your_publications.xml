@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recyclerYourPublicationsMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="40dp"
+        card_view:cardElevation="5dp"
+        android:outlineSpotShadowColor="@color/semi_dark"
+        android:alpha="1.0"
+        app:cardBackgroundColor="@color/main_color"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/recyclerYourPublicationsFromTo"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="40dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0"
+                app:cardBackgroundColor="@color/white"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp">
+
+                    <TextView
+                        android:id="@+id/fromTo"
+                        style="@style/textHeader"
+                        android:textSize="18sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/light_dark"
+                        android:text="From - To" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                style="@style/textHeader"
+                android:textSize="22sp"
+                android:id="@+id/textViewPricePublication"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="25dp"
+                android:textColor="@color/white"
+                android:text="20$"
+                />
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="40dp"-->
+<!--                card_view:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:paddingRight="10dp"-->
+<!--                android:gravity="center"-->
+<!--                app:startIconDrawable="@drawable/ic_baseline_person_4_24"-->
+<!--                app:boxBackgroundColor="@color/white"-->
+<!--                app:boxStrokeWidth="0dp"-->
+<!--                app:boxCornerRadiusBottomEnd="40dp"-->
+<!--                app:boxCornerRadiusBottomStart="40dp"-->
+<!--                app:boxCornerRadiusTopEnd="40dp"-->
+<!--                app:boxCornerRadiusTopStart="40dp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    style="@style/textSearchFields"-->
+<!--                    android:id="@+id/fieldYourPublicationsPeoples"-->
+<!--                    android:clickable="false"-->
+<!--                    android:focusable="false"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="1" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:paddingRight="10dp"-->
+<!--                android:gravity="center"-->
+<!--                app:startIconDrawable="@drawable/ic_baseline_date_range_24"-->
+<!--                app:boxBackgroundColor="@color/white"-->
+<!--                app:boxStrokeWidth="0dp"-->
+<!--                app:boxCornerRadiusBottomEnd="40dp"-->
+<!--                app:boxCornerRadiusBottomStart="40dp"-->
+<!--                app:boxCornerRadiusTopEnd="40dp"-->
+<!--                app:boxCornerRadiusTopStart="40dp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    style="@style/textSearchFields"-->
+<!--                    android:id="@+id/fieldYourPublicationsDate"-->
+<!--                    android:clickable="false"-->
+<!--                    android:focusable="false"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="date" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:paddingRight="10dp"-->
+<!--                android:gravity="center"-->
+<!--                app:startIconDrawable="@drawable/ic_baseline_access_time_24"-->
+<!--                app:boxBackgroundColor="@color/white"-->
+<!--                app:boxStrokeWidth="0dp"-->
+<!--                app:boxCornerRadiusBottomEnd="40dp"-->
+<!--                app:boxCornerRadiusBottomStart="40dp"-->
+<!--                app:boxCornerRadiusTopEnd="40dp"-->
+<!--                app:boxCornerRadiusTopStart="40dp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    style="@style/textSearchFields"-->
+<!--                    android:id="@+id/fieldYourPublicationsTime"-->
+<!--                    android:clickable="false"-->
+<!--                    android:focusable="false"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="time" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:paddingRight="10dp"-->
+<!--                android:gravity="center"-->
+<!--                app:startIconDrawable="@drawable/ic_baseline_monetization_on_24"-->
+<!--                app:boxBackgroundColor="@color/white"-->
+<!--                app:boxStrokeWidth="0dp"-->
+<!--                app:boxCornerRadiusBottomEnd="40dp"-->
+<!--                app:boxCornerRadiusBottomStart="40dp"-->
+<!--                app:boxCornerRadiusTopEnd="40dp"-->
+<!--                app:boxCornerRadiusTopStart="40dp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    style="@style/textSearchFields"-->
+<!--                    android:id="@+id/fieldYourPublicationsCost"-->
+<!--                    android:clickable="false"-->
+<!--                    android:focusable="false"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="price" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:paddingRight="10dp"-->
+<!--                android:gravity="center"-->
+<!--                app:startIconDrawable="@drawable/ic_baseline_message_24"-->
+<!--                app:boxBackgroundColor="@color/white"-->
+<!--                app:boxStrokeWidth="0dp"-->
+<!--                app:boxCornerRadiusBottomEnd="40dp"-->
+<!--                app:boxCornerRadiusBottomStart="40dp"-->
+<!--                app:boxCornerRadiusTopEnd="40dp"-->
+<!--                app:boxCornerRadiusTopStart="40dp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    style="@style/textSearchFields"-->
+<!--                    android:id="@+id/fieldYourPublicationsComment"-->
+<!--                    android:clickable="false"-->
+<!--                    android:focusable="false"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="comment" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -73,8 +73,8 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/fieldFrom"
-                                style="@style/textFields"
+                                android:id="@+id/fieldSearchFrom"
+                                style="@style/textSearchFields"
                                 android:clickable="false"
                                 android:focusable="false"
                                 android:layout_width="match_parent"
@@ -104,7 +104,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                style="@style/textFields"
+                                style="@style/textSearchFields"
                                 android:id="@+id/fieldTo"
                                 android:clickable="false"
                                 android:focusable="false"
@@ -168,11 +168,11 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/textFields"
-                            android:id="@+id/fieldPeoples"
+                            style="@style/textSearchFields"
+                            android:id="@+id/fieldSearchPeoples"
                             android:clickable="false"
                             android:focusable="false"
-                            android:layout_width="80dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="1" />
@@ -217,8 +217,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        style="@style/textFields"
-                        android:id="@+id/fieldDate"
+                        style="@style/textSearchFields"
+                        android:id="@+id/fieldSearchDate"
                         android:clickable="false"
                         android:focusable="false"
                         android:layout_width="match_parent"
@@ -274,7 +274,7 @@
                     card_view:srcCompat="@drawable/map_review" />
 
                 <TextView
-                    style="@style/textFields"
+                    style="@style/textSearchFields"
                     android:textColor="@color/white"
                     android:id="@+id/textView3"
                     android:layout_width="200dp"

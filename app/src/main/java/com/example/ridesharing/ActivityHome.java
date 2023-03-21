@@ -13,6 +13,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.HashMap;
 
 public class ActivityHome extends AppCompatActivity {
+    public static final String MAIN_TAG = "MAIN_TAG";
+
     BottomNavigationView navigationView;
     HashMap<Integer, Integer> map;
     public int oldIndex = 3;

@@ -29,24 +29,20 @@ import java.util.concurrent.CompletableFuture;
 public class FragmentHomeSearch extends Fragment{
     View view;
 
-    private static final String TAG = "CityList";
-    private static final String token = "0bf33d540f944deeddf92aaee8f1a60de7fcea29";
-    private static final String secretToken = "cf86dcb6b9e1cc4279ab848a561c8625d84f8d0d";
+    private static final String VIEW_NAME = "FragmentHomeSearch";
+    private static final String TOKEN = "0bf33d540f944deeddf92aaee8f1a60de7fcea29";
+    private static final String SECRET_TOKEN = "cf86dcb6b9e1cc4279ab848a561c8625d84f8d0d";
 
     CardView searchCard;
     boolean hidden = true;
     ImageView dropDown;
     TextInputEditText from;
-    String txtFrom;
 
     TextInputEditText to;
-    String txtTo;
 
     TextInputEditText peoples;
-    int txtPeoples;
 
     TextInputEditText date;
-    String txtDate;
 
     CheckBox pickUp;
 
@@ -73,32 +69,31 @@ public class FragmentHomeSearch extends Fragment{
         date.setText(dtf.format(currentDate));
 
         bundleGet = getArguments();
-        if(bundleGet != null){
-            switch (bundleGet.getString("fieldName")){
-                case "From":
+        try {
+            if(bundleGet != null){
+                from.setText(bundleGet.getString("from"));
+                to.setText(bundleGet.getString("to"));
+                peoples.setText(bundleGet.getString("peoples"));
+                date.setText(bundleGet.getString("date"));
+                pickUp.setChecked(bundleGet.getBoolean("pickup"));
+
+                String txtFrom = getResources().getString(R.string.field_from);
+                String txtTo = getResources().getString(R.string.field_to);
+                String txtDate = getResources().getString(R.string.field_date);
+
+                String fieldName = bundleGet.getString("fieldName");
+                if (txtFrom.equals(fieldName)) {
                     from.setText(bundleGet.getString("fieldText"));
-                    to.setText(bundleGet.getString("to"));
-                    peoples.setText(bundleGet.getString("peoples"));
-                    date.setText(bundleGet.getString("date"));
-                    pickUp.setChecked(bundleGet.getBoolean("pickup"));
-                    break;
-                case "To":
+                } else if (txtTo.equals(fieldName)) {
                     to.setText(bundleGet.getString("fieldText"));
-                    from.setText(bundleGet.getString("from"));
-                    peoples.setText(bundleGet.getString("peoples"));
-                    date.setText(bundleGet.getString("date"));
-                    pickUp.setChecked(bundleGet.getBoolean("pickup"));
-                    break;
-                case "Date":
-                    to.setText(bundleGet.getString("to"));
-                    from.setText(bundleGet.getString("from"));
-                    peoples.setText(bundleGet.getString("peoples"));
+                } else if (txtDate.equals(fieldName)) {
                     date.setText(bundleGet.getString("fieldText"));
-                    pickUp.setChecked(bundleGet.getBoolean("pickup"));
-                    break;
+                }
 
             }
 
+        }catch (Exception e){
+            Log.d(ActivityHome.MAIN_TAG, VIEW_NAME + " " + e);
         }
 
         // Animation cardview
@@ -129,17 +124,18 @@ public class FragmentHomeSearch extends Fragment{
 
     public void setListen(View view){
         @SuppressLint("NonConstantResourceId") View.OnClickListener listenerField = v -> {
+            bundleSet.putString("Parent", "Search");
             switch (view.getId()){
-                case R.id.fieldFrom:
-                    bundleSet.putString("FieldName", "From");
+                case R.id.fieldSearchFrom:
+                    bundleSet.putString("FieldName", getResources().getString(R.string.field_from));
                     bundleSet.putString("FieldText", from.getText().toString());
                     break;
                 case R.id.fieldTo:
-                    bundleSet.putString("FieldName", "To");
+                    bundleSet.putString("FieldName", getResources().getString(R.string.field_to));
                     bundleSet.putString("FieldText", to.getText().toString());
                     break;
-                case R.id.fieldDate:
-                    bundleSet.putString("FieldName", "Date");
+                case R.id.fieldSearchDate:
+                    bundleSet.putString("FieldName", getResources().getString(R.string.field_date));
                     bundleSet.putString("FieldText", date.getText().toString());
                     break;
                 default: break;
@@ -147,10 +143,6 @@ public class FragmentHomeSearch extends Fragment{
 
             fullBundle(bundleSet);
             loadFragmentFromTop(HelperFragmentFields.newInstance(bundleSet), "helper");
-//            Intent helperField = new Intent(getActivity(), HelperActivityFields.class);
-//            helperField.putExtra("bundle", bundleSet);
-//            startActivity(helperField);
-
         };
         view.setOnClickListener(listenerField);
     }
@@ -165,7 +157,7 @@ public class FragmentHomeSearch extends Fragment{
 
     public String addressValidation(String notValidAddress){
         final String[] validAddress = {null};
-        DaData daData = new DaData(token, secretToken);
+        DaData daData = new DaData(TOKEN, SECRET_TOKEN);
 
         CompletableFuture.supplyAsync(() -> {
             Address address = daData.cleanAddress(notValidAddress);
@@ -208,10 +200,10 @@ public class FragmentHomeSearch extends Fragment{
     }
 
     public void initComponents(){
-        from = view.findViewById(R.id.fieldFrom);
+        from = view.findViewById(R.id.fieldSearchFrom);
         to = view.findViewById(R.id.fieldTo);
-        peoples = view.findViewById(R.id.fieldPeoples);
-        date = view.findViewById(R.id.fieldDate);
+        peoples = view.findViewById(R.id.fieldSearchPeoples);
+        date = view.findViewById(R.id.fieldSearchDate);
         searchCard = view.findViewById(R.id.searchCardMain);
         dropDown = view.findViewById(R.id.imageView3);
         minusPeople = view.findViewById(R.id.buttonMinus);
