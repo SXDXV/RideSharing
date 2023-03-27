@@ -12,6 +12,9 @@
     <!--Main color-->
     <color name="main_color">#fbb03b</color>
     <color name="main_semi_color">#ffebcb</color>
+    <color name="pass">#fb3b6d</color>
+    <color name="semi_pass">#fff1f1</color>
+    <color name="success">#3bfb8c</color>
 
     <!--Light Theme-->
     <!--Default components-->

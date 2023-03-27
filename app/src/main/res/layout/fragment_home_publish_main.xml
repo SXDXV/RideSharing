@@ -53,7 +53,7 @@
                         android:text="@string/text_fromwhere" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/outlinedTextFieldFrom"
+                        android:id="@+id/outlinedTextFieldFromPublishMain"
                         android:layout_width="match_parent"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
@@ -83,7 +83,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/outlinedTextFieldTo"
+                        android:id="@+id/outlinedTextFieldToPublishMain"
                         android:layout_width="match_parent"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
@@ -229,7 +229,7 @@
                         android:text="@string/text_when" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/outlinedTextFieldDate"
+                        android:id="@+id/outlinedTextFieldDatePublishMain"
                         android:layout_width="match_parent"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
@@ -257,7 +257,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/outlinedTextFieldTime"
+                        android:id="@+id/outlinedTextFieldTimePublishMain"
                         android:layout_width="match_parent"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
@@ -312,7 +312,7 @@
                         android:text="@string/text_price" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/outlinedTextFieldComment"
+                        android:id="@+id/outlinedTextFieldPricePublishMain"
                         android:layout_width="match_parent"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
@@ -366,7 +366,7 @@
                         android:text="@string/text_comment" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/outlinedTextFieldPrice"
+                        android:id="@+id/outlinedTextFieldCommentPublishMain"
                         android:layout_width="match_parent"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"

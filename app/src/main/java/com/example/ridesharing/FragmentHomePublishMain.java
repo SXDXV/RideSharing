@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,11 +33,16 @@ public class FragmentHomePublishMain extends Fragment{
     private static final String VIEW_NAME = "FragmentHomePublishMain";
 
     private TextInputEditText from;
+    private TextInputLayout fromInput;
     private TextInputEditText to;
+    private TextInputLayout toInput;
     private TextInputEditText peoples;
     private TextInputEditText date;
+    private TextInputLayout dateInput;
     private TextInputEditText time;
+    private TextInputLayout timeInput;
     private TextInputEditText price;
+    private TextInputLayout priceInput;
     private TextInputEditText comment;
     private CheckBox music;
     private CheckBox pets;
@@ -65,6 +72,7 @@ public class FragmentHomePublishMain extends Fragment{
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern ("dd-MM-YYYY");
         date.setText(dtf.format(currentDate));
+        time.setText("12:30");
 
         countPeopleBtn(minus);
         countPeopleBtn(plus);
@@ -120,10 +128,22 @@ public class FragmentHomePublishMain extends Fragment{
 
 
         finish.setOnClickListener(v -> {
-            try {
-                realtimeDatabaseSetData();
-            }catch (Exception e){
-                Log.d(ActivityHome.MAIN_TAG, VIEW_NAME + " " + e);
+            validationColorFields(from.getText().toString(), to.getText().toString(),
+                    date.getText().toString(), time.getText().toString(), price.getText().toString());
+            if (!from.getText().toString().equals("") &&
+                    !to.getText().toString().equals("") &&
+                    !date.getText().toString().equals("") &&
+                    !time.getText().toString().equals("") &&
+                    !price.getText().toString().equals("")){
+                try {
+                    realtimeDatabaseSetData();
+                }catch (Exception e){
+                    Log.d(ActivityHome.MAIN_TAG, VIEW_NAME + " " + e);
+                }
+            } else {
+                Toast toast = Toast.makeText(getContext(),
+                        getResources().getString(R.string.toast_empty_data), Toast.LENGTH_LONG);
+                toast.show();
             }
         });
 
@@ -182,7 +202,13 @@ public class FragmentHomePublishMain extends Fragment{
             }
 
             fullBundle(bundleSet);
-            loadFragmentFromTop(HelperFragmentFields.newInstance(bundleSet), "helper");
+            if (view.getId() == R.id.fieldPublishDate){
+                loadFragmentFromTop(HelperFragmentDate.newInstance(bundleSet), "helperDate");
+            } else if (view.getId() == R.id.fieldPublishTime){
+                loadFragmentFromTop(HelperFragmentTime.newInstance(bundleSet), "helperTime");
+            } else {
+                loadFragmentFromTop(HelperFragmentFields.newInstance(bundleSet), "helperField");
+            }
         };
         view.setOnClickListener(listenerField);
     }
@@ -256,6 +282,21 @@ public class FragmentHomePublishMain extends Fragment{
         minus = view.findViewById(R.id.buttonMinus);
         plus = view.findViewById(R.id.buttonPlus);
         finish = view.findViewById(R.id.btnToPublishMain);
+
+        fromInput = view.findViewById(R.id.outlinedTextFieldFromPublishMain);
+        toInput = view.findViewById(R.id.outlinedTextFieldToPublishMain);
+        dateInput = view.findViewById(R.id.outlinedTextFieldDatePublishMain);
+        timeInput = view.findViewById(R.id.outlinedTextFieldTimePublishMain);
+        priceInput = view.findViewById(R.id.outlinedTextFieldPricePublishMain);
+    }
+
+    public void validationColorFields(String from, String to, String date, String time, String price){
+        ClassValidationColor classValidationColor = new ClassValidationColor(getContext());
+        classValidationColor.validationColor("very_light_dark", fromInput, from);
+        classValidationColor.validationColor("very_light_dark", toInput, to);
+        classValidationColor.validationColor("very_light_dark", dateInput, date);
+        classValidationColor.validationColor("very_light_dark", timeInput, time);
+        classValidationColor.validationColor("very_light_dark", priceInput, price);
     }
 
     public static FragmentHomePublishMain newInstance(Bundle bundle){

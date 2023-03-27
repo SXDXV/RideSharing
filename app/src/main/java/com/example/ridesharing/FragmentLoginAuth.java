@@ -1,6 +1,7 @@
 package com.example.ridesharing;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,8 +18,6 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class FragmentLoginAuth extends Fragment {
     final static String BASE_AUTH = "Auth_sign";
@@ -27,8 +26,8 @@ public class FragmentLoginAuth extends Fragment {
     private Button login;
     private TextView toRegistration;
     private Intent toHome;
-    private TextInputLayout email;
-    private TextInputLayout pass;
+    private TextInputLayout emailInput;
+    private TextInputLayout passInput;
 
     private FirebaseAuth mAuth;
 
@@ -71,27 +70,41 @@ public class FragmentLoginAuth extends Fragment {
     }
 
     public void sign(String email, String password){
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(getActivity(), task -> {
-                    if (task.isSuccessful()) {
-                        Log.d(BASE_AUTH, "signInWithEmail:success");
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        userID = user.getUid();
-                        startActivity(toHome);
-                    } else {
-                        Toast toast = Toast.makeText(getContext(),
-                                getResources().getString(R.string.toast_invalid_data), Toast.LENGTH_LONG);
-                        toast.show();
-                    }
-                });
+        validationColorFields(email, password);
+        if (!email.equals("") && !password.equals("")){
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(getActivity(), task -> {
+                        if (task.isSuccessful()) {
+                            Log.d(BASE_AUTH, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            userID = user.getUid();
+                            startActivity(toHome);
+                        } else {
+                            Toast toast = Toast.makeText(getContext(),
+                                    getResources().getString(R.string.toast_invalid_data), Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                    });
+        }else {
+            Toast toast = Toast.makeText(getContext(),
+                    getResources().getString(R.string.toast_empty_data), Toast.LENGTH_LONG);
+            toast.show();
+        }
+
+    }
+
+    public void validationColorFields(String email, String password){
+        ClassValidationColor classValidationColor = new ClassValidationColor(getContext());
+        classValidationColor.validationColor("white", emailInput, email);
+        classValidationColor.validationColor("white", passInput, password);
     }
 
     public void initComponents(){
-        email = view.findViewById(R.id.inputEmailAuth);
-        pass = view.findViewById(R.id.inputPasswordAuth);
+        emailInput = view.findViewById(R.id.inputEmailAuth);
+        passInput = view.findViewById(R.id.inputPasswordAuth);
 
-        emailTxt = email.getEditText().getText().toString();
-        passTxt = pass.getEditText().getText().toString();
+        emailTxt = emailInput.getEditText().getText().toString();
+        passTxt = passInput.getEditText().getText().toString();
     }
 
     public static FragmentLoginAuth newInstance(){

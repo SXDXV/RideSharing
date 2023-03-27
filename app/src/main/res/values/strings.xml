@@ -33,7 +33,8 @@
     <string name="text_smoking">Сan smoke in the car?</string>
 
     <string name="toast_invalid_data">There were problems with the entrance, please check the correctness of the entered data</string>
-
+    <string name="toast_empty_data">You did not fill in all required fields!</string>
+    <string name="toast_password_valid">The entered passwords do not match</string>
 
     <string name="field_from">From</string>
     <string name="field_to">To</string>
@@ -41,6 +42,8 @@
     <string name="field_time">Time of departure</string>
     <string name="field_price">Price of a seat</string>
     <string name="field_comment">Comment for traveler</string>
+    <string name="field_hours">Hours</string>
+    <string name="field_minutes">Minutes</string>
 
     <string name="menu_search">search</string>
     <string name="menu_publish">publish</string>
@@ -49,12 +52,15 @@
     <string name="menu_profile">profile</string>
 
     <string name="fragment_search_search">Search trip</string>
+    <string name="fragment_search_result">Here is what we found for your request</string>
     <string name="fragment_search_from">From</string>
     <string name="fragment_search_to">To</string>
     <string name="fragment_search_count_peoples">How many people are traveling?</string>
     <string name="fragment_search_pick_up">Pick up fellow travelers</string>
     <string name="fragment_search_date">When do you want to travel?</string>
     <string name="fragment_search_map">Or check the map!</string>
+
+    <string name="fragment_search_map_map">Check out the offers on the map!</string>
 
     <string name="fragment_publish_publish">If you are going somewhere, post your ad here</string>
     <string name="fragment_publish_button">I\'m going!</string>

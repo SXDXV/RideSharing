@@ -8,13 +8,13 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ridesharing.dadata.Address;
 import com.example.ridesharing.recycler.RecyclerYourPublicationsAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,12 +23,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
+import java.util.Collections;
+import java.util.List;
 
 public class FragmentHomePublish extends Fragment{
     View view;
     private static final String VIEW_NAME = "FragmentHomePublish";
     private String UiD;
+    private CardView publicationsCard;
 
     Button toPublishMain;
     ArrayList<ClassPublication> publications = new ArrayList<ClassPublication>();
@@ -42,6 +44,8 @@ public class FragmentHomePublish extends Fragment{
         view = inflater.inflate(R.layout.fragment_home_publish, container, false);
         UiD = FragmentLoginAuth.userID;
 
+        publicationsCard = view.findViewById(R.id.publishCard);
+
         createPublicationsList();
         toPublishMain = view.findViewById(R.id.btnToPublishMain);
         toPublishMain.setOnClickListener(v -> {
@@ -50,7 +54,7 @@ public class FragmentHomePublish extends Fragment{
         return view;
     }
 
-    public void rvPublications(ArrayList<ClassPublication> list){
+    public void rvPublications(List<ClassPublication> list){
         publications.addAll(list);
         RecyclerView rvNews = view.findViewById(R.id.recyclerYourPublications);
         RecyclerYourPublicationsAdapter.OnPublicationClickListener publicationsClickListener = (publications, position) -> {
@@ -60,6 +64,7 @@ public class FragmentHomePublish extends Fragment{
         rvNews.setAdapter(adapter);
         rvNews.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
+        resizeHeight(publicationsCard, 950, 1050);
     }
 
     public void createPublicationsList() {
@@ -73,7 +78,9 @@ public class FragmentHomePublish extends Fragment{
                     ClassPublication publication = childSnapshot.getValue(ClassPublication.class);
                     publicationsFill.add(publication);
                 }
-                rvPublications(publicationsFill);
+                List<ClassPublication> shallowCopy = publicationsFill.subList(0, publicationsFill.size());
+                Collections.reverse(shallowCopy);
+                rvPublications(shallowCopy);
             }
 
             @Override
@@ -81,6 +88,12 @@ public class FragmentHomePublish extends Fragment{
 
             }
         });
+    }
+
+    public void resizeHeight(View view, int width, int height){
+        ClassResizeAnimation resizeAnimation = new ClassResizeAnimation(view, width, height);
+        resizeAnimation.setDuration(400);
+        view.startAnimation(resizeAnimation);
     }
 
     public void loadFragmentFromTop(Fragment fragment, String tag){

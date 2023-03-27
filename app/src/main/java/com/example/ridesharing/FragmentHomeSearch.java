@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,10 +22,12 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.ridesharing.dadata.Address;
 import com.example.ridesharing.dadata.DaData;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.util.Stack;
 import java.util.concurrent.CompletableFuture;
 
 public class FragmentHomeSearch extends Fragment{
@@ -37,21 +41,27 @@ public class FragmentHomeSearch extends Fragment{
     boolean hidden = true;
     ImageView dropDown;
     TextInputEditText from;
+    TextInputLayout fromInput;
 
     TextInputEditText to;
+    TextInputLayout toInput;
 
     TextInputEditText peoples;
 
     TextInputEditText date;
+    TextInputLayout dateInput;
 
     CheckBox pickUp;
 
     Button plusPeople;
     Button minusPeople;
+    Button btnContinue;
 
     Bundle bundleGet = new Bundle();
     Bundle bundleSet = new Bundle();
 
+    TextView tvMap;
+    ImageView ivMap;
 
     public FragmentHomeSearch() {
     }
@@ -65,7 +75,7 @@ public class FragmentHomeSearch extends Fragment{
 
         searchCard.getBackground().setAlpha(255);
         LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern ("dd/MM/YYYY");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern ("dd-MM-YYYY");
         date.setText(dtf.format(currentDate));
 
         bundleGet = getArguments();
@@ -99,18 +109,6 @@ public class FragmentHomeSearch extends Fragment{
         // Animation cardview
         resizeHeight(searchCard, 950, 530);
         // Listener to animation cardview on touch
-        View.OnClickListener listenerDropDown = v -> {
-            if (hidden){
-                resizeHeight(searchCard, 950, 530);
-                dropDown.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
-                hidden = false;
-            } else {
-                resizeHeight(searchCard, 950, 1140);
-                dropDown.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
-                hidden = true;
-            }
-        };
-        dropDown.setOnClickListener(listenerDropDown);
 
         setListen(from);
         setListen(to);
@@ -119,6 +117,41 @@ public class FragmentHomeSearch extends Fragment{
         countPeopleBtn(minusPeople);
         countPeopleBtn(plusPeople);
 
+        View.OnClickListener listenerDropDown = v -> {
+            if (hidden){
+                resizeHeight(searchCard, 950, 530);
+                dropDown.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                hidden = false;
+            } else {
+                resizeHeight(searchCard, 950, 1200);
+                dropDown.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                hidden = true;
+            }
+        };
+        dropDown.setOnClickListener(listenerDropDown);
+
+        View.OnClickListener listenerContinue = v -> {
+            validationColorFields(from.getText().toString(), to.getText().toString(), date.getText().toString());
+            if (!from.getText().toString().equals("") && !to.getText().toString().equals("") && !date.getText().toString().equals("")){
+                bundleSet.putString("From", from.getText().toString());
+                bundleSet.putString("To", to.getText().toString());
+                bundleSet.putString("Date", date.getText().toString());
+                bundleSet.putString("Peoples", peoples.getText().toString());
+                loadFragmentFromDown(FragmentHomeSearchResult.newInstance(bundleSet), "SearchResult");
+            }else {
+                Toast toast = Toast.makeText(getContext(),
+                        getResources().getString(R.string.toast_empty_data), Toast.LENGTH_LONG);
+                toast.show();
+            }
+
+        };
+        btnContinue.setOnClickListener(listenerContinue);
+
+        View.OnClickListener listenerMap = v -> {
+            loadFragmentFromDown(FragmentHomeSearchMap.newInstance(), "Map");
+        };
+        tvMap.setOnClickListener(listenerMap);
+        ivMap.setOnClickListener(listenerMap);
         return view;
     }
 
@@ -142,9 +175,23 @@ public class FragmentHomeSearch extends Fragment{
             }
 
             fullBundle(bundleSet);
-            loadFragmentFromTop(HelperFragmentFields.newInstance(bundleSet), "helper");
+            if (view.getId() == R.id.fieldSearchDate){
+                loadFragmentFromTop(HelperFragmentDate.newInstance(bundleSet), "helperDate");
+            } else {
+                loadFragmentFromTop(HelperFragmentFields.newInstance(bundleSet), "helperField");
+            }
         };
         view.setOnClickListener(listenerField);
+    }
+
+    public void loadFragmentFromDown(Fragment fragment, String tag){
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction transaction = fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_top, R.anim.exit_to_down);
+        transaction.replace(R.id.fragmentHome,fragment);
+        transaction.addToBackStack(tag);
+        transaction.commit();
     }
 
     public void fullBundle(Bundle bundle){
@@ -167,6 +214,13 @@ public class FragmentHomeSearch extends Fragment{
                     validAddress[0] = result;
                 });
         return validAddress[0];
+    }
+
+    public void validationColorFields(String from, String to, String date){
+        ClassValidationColor classValidationColor = new ClassValidationColor(getContext());
+        classValidationColor.validationColor("very_light_dark", fromInput, from);
+        classValidationColor.validationColor("very_light_dark", toInput, to);
+        classValidationColor.validationColor("very_light_dark", dateInput, date);
     }
 
     public void countPeopleBtn(View btn){
@@ -209,6 +263,13 @@ public class FragmentHomeSearch extends Fragment{
         minusPeople = view.findViewById(R.id.buttonMinus);
         plusPeople = view.findViewById(R.id.buttonPlus);
         pickUp = view.findViewById(R.id.checkBoxPickUp);
+        btnContinue = view.findViewById(R.id.continueBtnSearch);
+        tvMap = view.findViewById(R.id.textViewMap);
+        ivMap = view.findViewById(R.id.imageViewMap);
+
+        fromInput = view.findViewById(R.id.outlinedTextFieldFromSearch);
+        toInput = view.findViewById(R.id.outlinedTextFieldToSearch);
+        dateInput = view.findViewById(R.id.outlinedTextFieldDateSearch);
     }
 
     public void resizeHeight(View view, int width, int height){

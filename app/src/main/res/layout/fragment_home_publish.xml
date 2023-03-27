@@ -46,10 +46,25 @@
             android:gravity="bottom"
             android:text="@string/fragment_publish_your_publications" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerYourPublications"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/publishCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            card_view:cardCornerRadius="40dp"
+            card_view:cardElevation="20dp"
+            android:outlineSpotShadowColor="@color/semi_dark">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerYourPublications"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </ScrollView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
