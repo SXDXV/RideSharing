@@ -12,13 +12,26 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
+/**
+ * Класс создания адаптивной перекраски неправильно заполненных полей пользователем
+ */
 public class ClassValidationColor{
     private Context context;
 
+    /**
+     * Конструктор класса
+     * @param context Передача контекста (this/getContext()/getActivity())
+     */
     public ClassValidationColor(Context context) {
         this.context = context;
     }
 
+    /**
+     * Основной метод перекраски полей
+     * @param backColor Исходный цвет поля
+     * @param view Выбор элемента для взаимодействия
+     * @param inner Входной текст элемента
+     */
     public void validationColor(String backColor,TextInputLayout view, String inner){
         if (!inner.equals("")){
             view.setBoxStrokeColor(context.getResources().getColor(R.color.main_color));

@@ -12,6 +12,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 
+/**
+ * Главная активность проекта, отсюда запускаются все необходимые фрагменты
+ */
 public class ActivityHome extends AppCompatActivity {
     public static final String MAIN_TAG = "MAIN_TAG";
 
@@ -20,6 +23,10 @@ public class ActivityHome extends AppCompatActivity {
     public int oldIndex = 3;
     int newIndex;
 
+    /**
+     * Метод создания активности
+     * @param savedInstanceState --
+     */
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,10 @@ public class ActivityHome extends AppCompatActivity {
         loadFragmentFromLeft(FragmentHomeTrips.newInstance(),"home");
 
         mapInit();
+
+        /**
+         * Работа слушателя меню, который определяет какой фрагмент необходимо запустить
+         */
         navigationView.setOnItemSelectedListener(item -> {
             newIndex = (Integer) map.get(item.getItemId());
             switch (item.getItemId()){
@@ -60,6 +71,11 @@ public class ActivityHome extends AppCompatActivity {
         });
     }
 
+    /**
+     * Метод загрузки фрагмента справа
+     * @param fragment Выбранный фрагмент (указать при вызове)
+     * @param tag Указать тег вызываемого фрагмента
+     */
     public void loadFragmentFromRight(Fragment fragment, String tag){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager
@@ -70,6 +86,11 @@ public class ActivityHome extends AppCompatActivity {
         transaction.commit();
     }
 
+    /**
+     * Метод загрузки фрагмента слева
+     * @param fragment Выбранный фрагмент (указать при вызове)
+     * @param tag Указать тег вызываемого фрагмента
+     */
     public void loadFragmentFromLeft(Fragment fragment, String tag){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager
@@ -80,6 +101,14 @@ public class ActivityHome extends AppCompatActivity {
         transaction.commit();
     }
 
+    /**
+     * Метод позволяющий делать адаптивную прокрутку фрагментов
+     * в зависимости от их текущего метсоположения
+     * @param oldI Индекс местонахождения до операции
+     * @param newI Индекс местонахождения в процессе операции
+     * @param fragment Выбор фрагмента
+     * @param tag Указать тег
+     */
     public void chooseAnimation(int oldI, int newI, Fragment fragment, String tag){
 
         if (oldI < newI){
@@ -90,6 +119,9 @@ public class ActivityHome extends AppCompatActivity {
         oldIndex = newIndex;
     }
 
+    /**
+     * Инициализация номеров списка элементов меню
+     */
     public void mapInit(){
         map = new HashMap<>();
         map.put(R.id.men_search, 1);

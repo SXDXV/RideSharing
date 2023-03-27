@@ -22,6 +22,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Класс фрагмента, отвечающего за переход на себя после нажатия на любое из полей родительского
+ * фрагмента. Предназначен для заполнения полей даты.
+ */
 public class HelperFragmentDate extends Fragment{
     View view;
     private static final String VIEW_NAME = "HelperFragmentDate";
@@ -36,6 +40,13 @@ public class HelperFragmentDate extends Fragment{
     Bundle bundleGet;
     Bundle bundleSet;
 
+    /**
+     * Метод, срабатывающий при создании фрагмента
+     * @param inflater связывает содержимое XML-файла с View
+     * @param container ViewGroup
+     * @param savedInstanceState Хранилище данных
+     * @return возвращает фрагмент поиска
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,6 +77,11 @@ public class HelperFragmentDate extends Fragment{
         return view;
     }
 
+    /**
+     * Метод валидации для красивого вывода полей
+     * @param initial Входные данные
+     * @return Возврат правильного значения
+     */
     private String dayMonthValidation(int initial){
         String result;
 
@@ -78,6 +94,10 @@ public class HelperFragmentDate extends Fragment{
         return result;
     }
 
+    /**
+     * Сллушатель для кнопок возвращения назад
+     * @param btn Пережать элемент
+     */
     @SuppressLint("NonConstantResourceId")
     public void backToSearch(View btn){
         btn.setOnClickListener(v -> {
@@ -104,6 +124,9 @@ public class HelperFragmentDate extends Fragment{
         });
     }
 
+    /**
+     * Определение, на какой конкретно фрагмент необходимо возвращаться
+     */
     public void backToParent(){
         if (bundleGet.getString("Parent").equals("Search")){
             loadFragmentFromDown(FragmentHomeSearch.newInstance(bundleSet), "search");
@@ -113,6 +136,9 @@ public class HelperFragmentDate extends Fragment{
         }
     }
 
+    /**
+     * Инициализация компонетов View
+     */
     public void initComponents(){
         fieldName = view.findViewById(R.id.fieldNameFragmentSearch);
         calendarView = view.findViewById(R.id.calendarView);
@@ -120,6 +146,11 @@ public class HelperFragmentDate extends Fragment{
         backSearch = view.findViewById(R.id.backToSearch);
     }
 
+    /**
+     * Загрузка фрагмента снизу
+     * @param fragment Передать фрагмент
+     * @param tag Указать тег для нового фрагмента
+     */
     public void loadFragmentFromDown(Fragment fragment, String tag){
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction transaction = fragmentManager
@@ -130,11 +161,21 @@ public class HelperFragmentDate extends Fragment{
         transaction.commit();
     }
 
+    /**
+     * Метод создания нового фрагмента с указанием передачи данных
+     * @param bundle Передаваемые во фрагмент данные
+     * @return возврат нового фрагмента
+     */
     public static HelperFragmentDate newInstance(Bundle bundle){
         HelperFragmentDate helperFragmentDate = new HelperFragmentDate();
         helperFragmentDate.setArguments(bundle);
         return helperFragmentDate;
     }
+
+    /**
+     * Метод создания нового фрагмента без указания передачи данных
+     * @return вощвращает новый пустой фрагмент
+     */
     public static HelperFragmentDate newInstance(){
         return new HelperFragmentDate();
     }

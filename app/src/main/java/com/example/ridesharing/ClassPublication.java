@@ -1,5 +1,9 @@
 package com.example.ridesharing;
 
+/**
+ * Класс описания публикации. Необходим для получения информации с сервера и получения
+ * структурированных данных
+ */
 public class ClassPublication {
     private String from;
     private String to;

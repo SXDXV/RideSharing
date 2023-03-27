@@ -13,6 +13,9 @@ import com.bumptech.glide.Glide;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Активность холодного старта приложения
+ */
 public class ActivityLaunch extends AppCompatActivity {
 
     private static final String USER_SETTINGS = "RS_US";

@@ -30,6 +30,9 @@ import java.util.Objects;
 import java.util.Stack;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Класс фрагмента поиска поездок
+ */
 public class FragmentHomeSearch extends Fragment{
     View view;
 
@@ -63,9 +66,19 @@ public class FragmentHomeSearch extends Fragment{
     TextView tvMap;
     ImageView ivMap;
 
+    /**
+     * Конструктор класса фрагмента поиска
+     */
     public FragmentHomeSearch() {
     }
 
+    /**
+     * Метод, срабатывающий при создании фрагмента
+     * @param inflater связывает содержимое XML-файла с View
+     * @param container ViewGroup
+     * @param savedInstanceState Хранилище данных
+     * @return возвращает фрагмент поиска
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,6 +91,9 @@ public class FragmentHomeSearch extends Fragment{
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern ("dd-MM-YYYY");
         date.setText(dtf.format(currentDate));
 
+        /**
+         * Получение агрументов передаваемых данных для записи в поля
+         */
         bundleGet = getArguments();
         try {
             if(bundleGet != null){
@@ -112,11 +128,13 @@ public class FragmentHomeSearch extends Fragment{
 
         setListen(from);
         setListen(to);
-        //setListen(peoples);
         setListen(date);
         countPeopleBtn(minusPeople);
         countPeopleBtn(plusPeople);
 
+        /**
+         * Анимация расширения CardView
+         */
         View.OnClickListener listenerDropDown = v -> {
             if (hidden){
                 resizeHeight(searchCard, 950, 530);
@@ -130,6 +148,9 @@ public class FragmentHomeSearch extends Fragment{
         };
         dropDown.setOnClickListener(listenerDropDown);
 
+        /**
+         * Переход к фрагменту вывода результатов
+         */
         View.OnClickListener listenerContinue = v -> {
             validationColorFields(from.getText().toString(), to.getText().toString(), date.getText().toString());
             if (!from.getText().toString().equals("") && !to.getText().toString().equals("") && !date.getText().toString().equals("")){
@@ -147,6 +168,9 @@ public class FragmentHomeSearch extends Fragment{
         };
         btnContinue.setOnClickListener(listenerContinue);
 
+        /**
+         * Нереализованный метод загрузки карты
+         */
         View.OnClickListener listenerMap = v -> {
             loadFragmentFromDown(FragmentHomeSearchMap.newInstance(), "Map");
         };
@@ -155,6 +179,10 @@ public class FragmentHomeSearch extends Fragment{
         return view;
     }
 
+    /**
+     * Прослушиватель на поля для заполнения из во фрагменте Field/Date
+     * @param view Передать элемент
+     */
     public void setListen(View view){
         @SuppressLint("NonConstantResourceId") View.OnClickListener listenerField = v -> {
             bundleSet.putString("Parent", "Search");
@@ -184,16 +212,10 @@ public class FragmentHomeSearch extends Fragment{
         view.setOnClickListener(listenerField);
     }
 
-    public void loadFragmentFromDown(Fragment fragment, String tag){
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction transaction = fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_top, R.anim.exit_to_down);
-        transaction.replace(R.id.fragmentHome,fragment);
-        transaction.addToBackStack(tag);
-        transaction.commit();
-    }
-
+    /**
+     * Метод заполнения хранилища
+     * @param bundle хранилище
+     */
     public void fullBundle(Bundle bundle){
         bundle.putString("from", Objects.requireNonNull(from.getText()).toString());
         bundle.putString("to", Objects.requireNonNull(to.getText()).toString());
@@ -202,6 +224,11 @@ public class FragmentHomeSearch extends Fragment{
         bundle.putBoolean("pickup", pickUp.isChecked());
     }
 
+    /**
+     * Валидация введенных пользователем адресов
+     * @param notValidAddress Исходный адрес
+     * @return Адрес, прошедший валидацию
+     */
     public String addressValidation(String notValidAddress){
         final String[] validAddress = {null};
         DaData daData = new DaData(TOKEN, SECRET_TOKEN);
@@ -216,6 +243,12 @@ public class FragmentHomeSearch extends Fragment{
         return validAddress[0];
     }
 
+    /**
+     * Метод установки цветной валидации на поля
+     * @param from --
+     * @param to --
+     * @param date --
+     */
     public void validationColorFields(String from, String to, String date){
         ClassValidationColor classValidationColor = new ClassValidationColor(getContext());
         classValidationColor.validationColor("very_light_dark", fromInput, from);
@@ -223,6 +256,10 @@ public class FragmentHomeSearch extends Fragment{
         classValidationColor.validationColor("very_light_dark", dateInput, date);
     }
 
+    /**
+     * Прослушиватель на кнопки добавления количества пассажиров
+     * @param btn передать элемент
+     */
     public void countPeopleBtn(View btn){
         btn.setOnClickListener(v -> {
             int countOfPeopleNow = Integer.parseInt(peoples.getText().toString());
@@ -243,6 +280,27 @@ public class FragmentHomeSearch extends Fragment{
         });
     }
 
+    /**
+     * Метод вызова фрагмента снизу
+     * @param fragment Передать сюда искомый фрагмент
+     * @param tag Добавить новому фрагменут тег
+     */
+    public void loadFragmentFromDown(Fragment fragment, String tag){
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction transaction = fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_top, R.anim.exit_to_down);
+        transaction.replace(R.id.fragmentHome,fragment);
+        transaction.addToBackStack(tag);
+        transaction.commit();
+    }
+
+
+    /**
+     * Метод вызова фрагмента сверху
+     * @param fragment Передать сюда искомый фрагмент
+     * @param tag Добавить новому фрагменут тег
+     */
     public void loadFragmentFromTop(Fragment fragment, String tag){
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction transaction = fragmentManager
@@ -253,6 +311,9 @@ public class FragmentHomeSearch extends Fragment{
         transaction.commit();
     }
 
+    /**
+     * Инициализация компонентов View
+     */
     public void initComponents(){
         from = view.findViewById(R.id.fieldSearchFrom);
         to = view.findViewById(R.id.fieldTo);
@@ -272,18 +333,33 @@ public class FragmentHomeSearch extends Fragment{
         dateInput = view.findViewById(R.id.outlinedTextFieldDateSearch);
     }
 
+    /**
+     * Анимация изменения размера
+     * @param view --
+     * @param width --
+     * @param height --
+     */
     public void resizeHeight(View view, int width, int height){
         ClassResizeAnimation resizeAnimation = new ClassResizeAnimation(view, width, height);
         resizeAnimation.setDuration(400);
         view.startAnimation(resizeAnimation);
     }
 
+    /**
+     * Метод создания нового фрагмента с указанием передачи данных
+     * @param bundle Передаваемые во фрагмент данные
+     * @return возврат нового фрагмента
+     */
     public static FragmentHomeSearch newInstance(Bundle bundle){
         FragmentHomeSearch fragmentHomeSearch = new FragmentHomeSearch();
         fragmentHomeSearch.setArguments(bundle);
         return fragmentHomeSearch;
     }
 
+    /**
+     * Метод создания нового фрагмента без указания передачи данных
+     * @return вощвращает новый пустой фрагмент
+     */
     public static FragmentHomeSearch newInstance(){
         return new FragmentHomeSearch();
     }

@@ -7,6 +7,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+/**
+ * Активность логина, содержащая фрагмента авторизации и реагистрации в системе
+ */
 public class ActivityLogin extends AppCompatActivity {
 
     @Override

@@ -17,6 +17,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+/**
+ * Класс фрагмента, отвечающего за переход на себя после нажатия на любое из полей родительского
+ * фрагмента. Предназначен для заполнения полей времени.
+ */
 public class HelperFragmentTime extends Fragment{
     View view;
     private static final String VIEW_NAME = "HelperFragmentTime";
@@ -36,6 +40,13 @@ public class HelperFragmentTime extends Fragment{
     Bundle bundleGet;
     Bundle bundleSet;
 
+    /**
+     * Метод, срабатывающий при создании фрагмента
+     * @param inflater связывает содержимое XML-файла с View
+     * @param container ViewGroup
+     * @param savedInstanceState Хранилище данных
+     * @return возвращает фрагмент поиска
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,6 +78,10 @@ public class HelperFragmentTime extends Fragment{
         return view;
     }
 
+    /**
+     * Слушатель для добавления и уменьшения значений часов и минут
+     * @param button Передать элемент
+     */
     @SuppressLint("NonConstantResourceId")
     public void setListenHoursMinutes(View button){
          button.setOnClickListener(v -> {
@@ -95,6 +110,10 @@ public class HelperFragmentTime extends Fragment{
         });
     }
 
+    /**
+     * Сллушатель для кнопок возвращения назад
+     * @param btn Пережать элемент
+     */
     @SuppressLint("NonConstantResourceId")
     public void backToSearch(View btn){
         btn.setOnClickListener(v -> {
@@ -120,6 +139,11 @@ public class HelperFragmentTime extends Fragment{
         });
     }
 
+    /**
+     * Валидация введенных минут и часов для красивого вывода в поле
+     * @param initial Входные данные
+     * @return Выходное валидное значение
+     */
     private String hoursMinutesValidation(String initial){
         String result;
 
@@ -132,6 +156,9 @@ public class HelperFragmentTime extends Fragment{
         return result;
     }
 
+    /**
+     * Определение, на какой конкретно фрагмент необходимо возвращаться
+     */
     public void backToParent(){
         if (bundleGet.getString("Parent").equals("Search")){
             loadFragmentFromDown(FragmentHomeSearch.newInstance(bundleSet), "search");
@@ -141,6 +168,9 @@ public class HelperFragmentTime extends Fragment{
         }
     }
 
+    /**
+     * Инициализация компонентов View
+     */
     public void initComponents(){
         fieldName = view.findViewById(R.id.fieldNameFragmentSearch);
         hours = view.findViewById(R.id.fieldHelperHours);
@@ -154,6 +184,11 @@ public class HelperFragmentTime extends Fragment{
         plusMinutes = view.findViewById(R.id.buttonPlusMinutes);
     }
 
+    /**
+     * Загрузка фрагмента снизу
+     * @param fragment Передать фрагмент
+     * @param tag Указать тег для нового фрагмента
+     */
     public void loadFragmentFromDown(Fragment fragment, String tag){
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction transaction = fragmentManager
@@ -164,11 +199,21 @@ public class HelperFragmentTime extends Fragment{
         transaction.commit();
     }
 
+    /**
+     * Метод создания нового фрагмента с указанием передачи данных
+     * @param bundle Передаваемые во фрагмент данные
+     * @return возврат нового фрагмента
+     */
     public static HelperFragmentTime newInstance(Bundle bundle){
         HelperFragmentTime helperFragmentTime = new HelperFragmentTime();
         helperFragmentTime.setArguments(bundle);
         return helperFragmentTime;
     }
+
+    /**
+     * Метод создания нового фрагмента без указания передачи данных
+     * @return вощвращает новый пустой фрагмент
+     */
     public static HelperFragmentTime newInstance(){
         return new HelperFragmentTime();
     }

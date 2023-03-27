@@ -27,6 +27,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Класс фрагмента публикации объявления и заполнения полей.
+ */
 public class FragmentHomePublishMain extends Fragment{
     private View view;
 
@@ -59,9 +62,19 @@ public class FragmentHomePublishMain extends Fragment{
     private Bundle bundleGet = new Bundle();
     private Bundle bundleSet = new Bundle();
 
+    /**
+     * Конструктор класса фрагмента
+     */
     public FragmentHomePublishMain() {
     }
 
+    /**
+     * Метод, срабатываемый при создании фрагмента
+     * @param inflater Связывает содержимое XML-файла с View
+     * @param container ViewGroup
+     * @param savedInstanceState Сохраненные параметры и аргументы фрагмента
+     * @return Возвращает View
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -85,6 +98,10 @@ public class FragmentHomePublishMain extends Fragment{
         setListen(comment);
 
         bundleGet = getArguments();
+
+        /**
+         * Заполнение полей существубщими значениями при возвращении на фрагмент
+         */
         try {
             if(bundleGet != null){
                 from.setText(bundleGet.getString("from"));
@@ -126,7 +143,9 @@ public class FragmentHomePublishMain extends Fragment{
             Log.d(ActivityHome.MAIN_TAG, VIEW_NAME + " " + e);
         }
 
-
+        /**
+         * Запись в базу, при прохождении всех проверок
+         */
         finish.setOnClickListener(v -> {
             validationColorFields(from.getText().toString(), to.getText().toString(),
                     date.getText().toString(), time.getText().toString(), price.getText().toString());
@@ -150,6 +169,9 @@ public class FragmentHomePublishMain extends Fragment{
         return view;
     }
 
+    /**
+     * Заполнение базы данных по шаблону appointMap
+     */
     public void realtimeDatabaseSetData(){
         Map<String, Object> appointMap = new HashMap<>();
         appointMap.put("author_id", FragmentLoginAuth.userID);
@@ -170,6 +192,10 @@ public class FragmentHomePublishMain extends Fragment{
         loadFragmentFromDown(FragmentHomePublish.newInstance(), "publish");
     }
 
+    /**
+     * Установка прослушивателей на входные View
+     * @param view Передача элемента в метод
+     */
     public void setListen(View view){
         @SuppressLint("NonConstantResourceId") View.OnClickListener listenerField = v -> {
             bundleSet.putString("Parent", "Publish");
@@ -213,6 +239,10 @@ public class FragmentHomePublishMain extends Fragment{
         view.setOnClickListener(listenerField);
     }
 
+    /**
+     * Прослушиватель на кнопки заполнения количества человек.
+     * @param btn Передача элемента
+     */
     public void countPeopleBtn(View btn){
         btn.setOnClickListener(v -> {
             int countOfPeopleNow = Integer.parseInt(peoples.getText().toString());
@@ -233,6 +263,11 @@ public class FragmentHomePublishMain extends Fragment{
         });
     }
 
+    /**
+     * Заполнение bundle для перехода ну другой фрагмент, чтобы в дальнешем восстановить
+     * данные при возвращении на исходный фрагмент
+     * @param bundle Передавать сюда bundleSet
+     */
     public void fullBundle(Bundle bundle){
         bundle.putString("from", Objects.requireNonNull(from.getText()).toString());
         bundle.putString("to", Objects.requireNonNull(to.getText()).toString());
@@ -247,6 +282,11 @@ public class FragmentHomePublishMain extends Fragment{
         bundle.putBoolean("smoke", smoking.isChecked());
     }
 
+    /**
+     * Метод вызова фрагмента сверху
+     * @param fragment Передать сюда искомый фрагмент
+     * @param tag Добавить новому фрагменут тег
+     */
     public void loadFragmentFromTop(Fragment fragment, String tag){
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction transaction = fragmentManager
@@ -257,6 +297,11 @@ public class FragmentHomePublishMain extends Fragment{
         transaction.commit();
     }
 
+    /**
+     * Метод вызова фрагмента снизу
+     * @param fragment Передать сюда искомый фрагмент
+     * @param tag Добавить новому фрагменут тег
+     */
     public void loadFragmentFromDown(Fragment fragment, String tag){
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction transaction = fragmentManager
@@ -267,6 +312,9 @@ public class FragmentHomePublishMain extends Fragment{
         transaction.commit();
     }
 
+    /**
+     * Инициализация компонентов View
+     */
     public void initComponents(){
         from = view.findViewById(R.id.fieldPublishFrom);
         to = view.findViewById(R.id.fieldPublishTo);
@@ -290,6 +338,14 @@ public class FragmentHomePublishMain extends Fragment{
         priceInput = view.findViewById(R.id.outlinedTextFieldPricePublishMain);
     }
 
+    /**
+     * Метод установки валидации ClassValidationColor на существующие поля
+     * @param from --
+     * @param to --
+     * @param date --
+     * @param time --
+     * @param price --
+     */
     public void validationColorFields(String from, String to, String date, String time, String price){
         ClassValidationColor classValidationColor = new ClassValidationColor(getContext());
         classValidationColor.validationColor("very_light_dark", fromInput, from);
@@ -299,12 +355,21 @@ public class FragmentHomePublishMain extends Fragment{
         classValidationColor.validationColor("very_light_dark", priceInput, price);
     }
 
+    /**
+     * Метод создания нового фрагмента с указанием передачи данных
+     * @param bundle Передаваемые во фрагмент данные
+     * @return возврат нового фрагмента
+     */
     public static FragmentHomePublishMain newInstance(Bundle bundle){
         FragmentHomePublishMain fragmentHomePublishMain = new FragmentHomePublishMain();
         fragmentHomePublishMain.setArguments(bundle);
         return fragmentHomePublishMain;
     }
 
+    /**
+     * Метод создания нового фрагмента без указания передачи данных
+     * @return вощвращает новый пустой фрагмент
+     */
     public static FragmentHomePublishMain newInstance(){
         return new FragmentHomePublishMain();
     }

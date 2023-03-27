@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.concurrent.Executor;
 
+/**
+ * Класс фрагмента регистрации
+ */
 public class FragmentLoginReg extends Fragment {
     final static String BASE_AUTH = "Auth_reg";
 
@@ -39,9 +42,19 @@ public class FragmentLoginReg extends Fragment {
     private String passTxt;
     private String confirmpassTxt;
 
+    /**
+     * Конструктор класса фрагмента поиска
+     */
     public FragmentLoginReg() {
     }
 
+    /**
+     * Метод, срабатывающий при создании фрагмента
+     * @param inflater связывает содержимое XML-файла с View
+     * @param container ViewGroup
+     * @param savedInstanceState Хранилище данных
+     * @return возвращает фрагмент поиска
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,6 +81,14 @@ public class FragmentLoginReg extends Fragment {
         return view;
     }
 
+    /**
+     * Метод регистрации с проверками
+     * @param email --
+     * @param password --
+     * @param name --
+     * @param phone --
+     * @param confirmpass --
+     */
     public void registration(String email, String password, String name, String phone, String confirmpass){
         validationColorFields(email, password, name, phone, confirmpass);
         if (!email.equals("") &&
@@ -102,6 +123,14 @@ public class FragmentLoginReg extends Fragment {
         }
     }
 
+    /**
+     * Валидация поле по цветам
+     * @param email --
+     * @param password --
+     * @param name --
+     * @param phone --
+     * @param confirmpass --
+     */
     public void validationColorFields(String email, String password, String name, String phone, String confirmpass){
         ClassValidationColor classValidationColor = new ClassValidationColor(getContext());
         classValidationColor.validationColor("white", emailInput, email);
@@ -111,13 +140,18 @@ public class FragmentLoginReg extends Fragment {
         classValidationColor.validationColor("white", confirmpassInput, confirmpass);
     }
 
-
+    /**
+     * Метод смены фрагмента ан Аутентификацию
+     */
     public void swipeFragment(){
         Fragment authetication = FragmentLoginAuth.newInstance();
         getFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_left,
                 R.anim.exit_to_right).replace(R.id.fragmentLogin, authetication).commit();
     }
 
+    /**
+     * Инициализация компонентов View
+     */
     public void initComponents(){
         nameInput = view.findViewById(R.id.inputNameReg);
         phoneInput = view.findViewById(R.id.inputPhoneReg);
@@ -132,6 +166,10 @@ public class FragmentLoginReg extends Fragment {
         confirmpassTxt = confirmpassInput.getEditText().getText().toString();
     }
 
+    /**
+     * Метод создания нового фрагмента без указания передачи данных
+     * @return вощвращает новый пустой фрагмент
+     */
     public static FragmentLoginReg newInstance(){
         return new FragmentLoginReg();
     }

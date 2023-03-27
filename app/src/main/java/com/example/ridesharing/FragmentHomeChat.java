@@ -9,7 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+/**
+ * Фрагмент, содержащий чат
+ */
 public class FragmentHomeChat extends Fragment{
+    /**
+     * Констуктор класса фрагмента
+     */
     public FragmentHomeChat() {
     }
 

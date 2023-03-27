@@ -19,6 +19,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Класс фрагмента аутентификации
+ */
 public class FragmentLoginAuth extends Fragment {
     final static String BASE_AUTH = "Auth_sign";
     public static String userID;
@@ -35,9 +38,19 @@ public class FragmentLoginAuth extends Fragment {
     private String emailTxt;
     private String passTxt;
 
+    /**
+     * Конструктор класса фрагмента
+     */
     public FragmentLoginAuth() {
     }
 
+    /**
+     * Метод, срабатывающий при создании фрагмента
+     * @param inflater связывает содержимое XML-файла с View
+     * @param container ViewGroup
+     * @param savedInstanceState Хранилище данных
+     * @return возвращает фрагмент поиска
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +82,11 @@ public class FragmentLoginAuth extends Fragment {
         return view;
     }
 
+    /**
+     * Метод авторизации со всеми проверками
+     * @param email Входная почта
+     * @param password Входной пароль
+     */
     public void sign(String email, String password){
         validationColorFields(email, password);
         if (!email.equals("") && !password.equals("")){
@@ -93,12 +111,20 @@ public class FragmentLoginAuth extends Fragment {
 
     }
 
+    /**
+     * Валидация полей на цвет
+     * @param email --
+     * @param password --
+     */
     public void validationColorFields(String email, String password){
         ClassValidationColor classValidationColor = new ClassValidationColor(getContext());
         classValidationColor.validationColor("white", emailInput, email);
         classValidationColor.validationColor("white", passInput, password);
     }
 
+    /**
+     * Инициализация компонентов View
+     */
     public void initComponents(){
         emailInput = view.findViewById(R.id.inputEmailAuth);
         passInput = view.findViewById(R.id.inputPasswordAuth);
@@ -107,6 +133,10 @@ public class FragmentLoginAuth extends Fragment {
         passTxt = passInput.getEditText().getText().toString();
     }
 
+    /**
+     * Метод создания нового фрагмента без указания передачи данных
+     * @return вощвращает новый пустой фрагмент
+     */
     public static FragmentLoginAuth newInstance(){
         return new FragmentLoginAuth();
     }

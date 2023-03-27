@@ -20,14 +20,27 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * Фрагмент вывода найденных поездок
+ */
 public class FragmentHomeSearchResult extends Fragment{
     View view;
     Bundle bundleGet = new Bundle();
     ArrayList<ClassPublication> orders = new ArrayList<ClassPublication>();
 
+    /**
+     * Конструктор фрагмента
+     */
     public FragmentHomeSearchResult() {
     }
 
+    /**
+     * Метод, срабатывающий при создании фрагмента
+     * @param inflater связывает содержимое XML-файла с View
+     * @param container ViewGroup
+     * @param savedInstanceState Хранилище данных
+     * @return возвращает фрагмент поиска
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +55,10 @@ public class FragmentHomeSearchResult extends Fragment{
         return view;
     }
 
+    /**
+     * Метод заполнения RecyclerView
+     * @param list Передать источник данных
+     */
     public void rvPublications(ArrayList<ClassPublication> list){
         orders.addAll(list);
         RecyclerView rvNews = view.findViewById(R.id.recyclerSearchOffer);
@@ -54,6 +71,13 @@ public class FragmentHomeSearchResult extends Fragment{
 
     }
 
+    /**
+     * Создание листа путем получения данных с сервера
+     * @param from --
+     * @param to --
+     * @param date --
+     * @param peoples --
+     */
     public void createOrdersList(String from, String to, String date, String peoples) {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("publish");
         myRef.orderByChild("date").equalTo(date).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -78,12 +102,21 @@ public class FragmentHomeSearchResult extends Fragment{
         });
     }
 
+    /**
+     * Метод создания нового фрагмента с указанием передачи данных
+     * @param bundle Передаваемые во фрагмент данные
+     * @return возврат нового фрагмента
+     */
     public static FragmentHomeSearchResult newInstance(Bundle bundle){
         FragmentHomeSearchResult fragmentHomeSearchResult = new FragmentHomeSearchResult();
         fragmentHomeSearchResult.setArguments(bundle);
         return fragmentHomeSearchResult;
     }
 
+    /**
+     * Метод создания нового фрагмента без указания передачи данных
+     * @return вощвращает новый пустой фрагмент
+     */
     public static FragmentHomeSearchResult newInstance(){
         return new FragmentHomeSearchResult();
     }

@@ -26,6 +26,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Фрагмент, содержащий первую страницу публикации (содержит в себе кнопку перехода на второй
+ * фрагмент, а также список опубликованных поездок)
+ */
 public class FragmentHomePublish extends Fragment{
     View view;
     private static final String VIEW_NAME = "FragmentHomePublish";
@@ -35,9 +39,19 @@ public class FragmentHomePublish extends Fragment{
     Button toPublishMain;
     ArrayList<ClassPublication> publications = new ArrayList<ClassPublication>();
 
+    /**
+     * Констуктор класса фрагмента
+     */
     public FragmentHomePublish() {
     }
 
+    /**
+     * Метод, срабатывающий при создании фрагмента
+     * @param inflater Из содержимого XML-файла создает View-элемент
+     * @param container ViewGroup
+     * @param savedInstanceState Сохраненные параметры
+     * @return Возвращает View
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +68,10 @@ public class FragmentHomePublish extends Fragment{
         return view;
     }
 
+    /**
+     * Метод, заполняющий RecyclerView
+     * @param list Исходный лист входных данных, получаемый в createPublicationsList
+     */
     public void rvPublications(List<ClassPublication> list){
         publications.addAll(list);
         RecyclerView rvNews = view.findViewById(R.id.recyclerYourPublications);
@@ -67,6 +85,11 @@ public class FragmentHomePublish extends Fragment{
         resizeHeight(publicationsCard, 950, 1050);
     }
 
+    /**
+     * Получение списка экземпляров класса Publication для заполнения RecyclerView.
+     * При запросе на сервер задаются параметры, а именно author_id - сортировка
+     * по айди текущего пользователя (он видит только свои публикации)
+     */
     public void createPublicationsList() {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("publish");
         myRef.orderByChild("author_id").equalTo(UiD).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -90,12 +113,24 @@ public class FragmentHomePublish extends Fragment{
         });
     }
 
+    /**
+     * Метод обращения к классу ClassResizeAnimation для анимации элемента
+     * @param view --
+     * @param width --
+     * @param height --
+     * Больше документации в классе ClassResizeAnimation.
+     */
     public void resizeHeight(View view, int width, int height){
         ClassResizeAnimation resizeAnimation = new ClassResizeAnimation(view, width, height);
         resizeAnimation.setDuration(400);
         view.startAnimation(resizeAnimation);
     }
 
+    /**
+     * Метод вызова фрагмента сверху
+     * @param fragment Передать нужный фрагмент
+     * @param tag Задать тег новому фрагменту
+     */
     public void loadFragmentFromTop(Fragment fragment, String tag){
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction transaction = fragmentManager
@@ -106,6 +141,10 @@ public class FragmentHomePublish extends Fragment{
         transaction.commit();
     }
 
+    /**
+     * Метод создания нового фрагмента (действующего). Вызывается из других фрагментов
+     * @return Возвращает новый экземпляр данного фрагмента
+     */
     public static FragmentHomePublish newInstance(){
         return new FragmentHomePublish();
     }
