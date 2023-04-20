@@ -1,4 +1,4 @@
-package com.example.ridesharing;
+package com.example.ridesharing.commonClasses;
 
 import android.view.View;
 import android.view.animation.Animation;

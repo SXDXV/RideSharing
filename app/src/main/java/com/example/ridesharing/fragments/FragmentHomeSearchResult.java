@@ -1,4 +1,4 @@
-package com.example.ridesharing;
+package com.example.ridesharing.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,10 +8,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ridesharing.recycler.RecyclerYourPublicationsAdapter;
+import com.example.ridesharing.R;
+import com.example.ridesharing.commonClasses.ClassPublication;
+import com.example.ridesharing.recycler.RecyclerYourPublicationsAndTripsAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +31,8 @@ import java.util.ArrayList;
 public class FragmentHomeSearchResult extends Fragment{
     View view;
     Bundle bundleGet = new Bundle();
+    Bundle bundleSet = new Bundle();
+    String key = null;
     ArrayList<ClassPublication> orders = new ArrayList<ClassPublication>();
 
     /**
@@ -44,6 +51,9 @@ public class FragmentHomeSearchResult extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.GONE);
+
         view = inflater.inflate(R.layout.fragment_home_search_result, container, false);
         bundleGet = getArguments();
         if (bundleGet != null){
@@ -60,12 +70,16 @@ public class FragmentHomeSearchResult extends Fragment{
      * @param list Передать источник данных
      */
     public void rvPublications(ArrayList<ClassPublication> list){
+        orders.clear();
         orders.addAll(list);
         RecyclerView rvNews = view.findViewById(R.id.recyclerSearchOffer);
-        RecyclerYourPublicationsAdapter.OnPublicationClickListener publicationsClickListener = (publications, position) -> {
-
+        RecyclerYourPublicationsAndTripsAdapter.OnPublicationClickListener publicationsClickListener = (publications, position) -> {
+            if (key != null){
+                bundleSet.putString("key", key);
+                loadFragmentFromDown(FragmentHomeSearchResultOrder.newInstance(bundleSet), "SearchResultOrder");
+            }
         };
-        RecyclerYourPublicationsAdapter adapter = new RecyclerYourPublicationsAdapter(getContext() , orders, publicationsClickListener);
+        RecyclerYourPublicationsAndTripsAdapter adapter = new RecyclerYourPublicationsAndTripsAdapter(getContext() , orders, publicationsClickListener);
         rvNews.setAdapter(adapter);
         rvNews.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
@@ -85,12 +99,11 @@ public class FragmentHomeSearchResult extends Fragment{
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<ClassPublication> ordersFill = new ArrayList<>();
                 for(DataSnapshot childSnapshot : snapshot.getChildren()){
-                    //String key = childSnapshot.getKey();
                     ClassPublication publication = childSnapshot.getValue(ClassPublication.class);
                     if (publication.getFrom().equals(from) && publication.getTo().equals(to)){
                         ordersFill.add(publication);
+                        key = childSnapshot.getKey();
                     }
-                    //ordersFill.add(publication);
                 }
                 rvPublications(ordersFill);
             }
@@ -100,6 +113,36 @@ public class FragmentHomeSearchResult extends Fragment{
 
             }
         });
+    }
+
+    /**
+     * Метод вызова фрагмента снизу
+     * @param fragment Передать сюда искомый фрагмент
+     * @param tag Добавить новому фрагменут тег
+     */
+    public void loadFragmentFromDown(Fragment fragment, String tag){
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction transaction = fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_top, R.anim.exit_to_down);
+        transaction.replace(R.id.fragmentHome,fragment);
+        transaction.addToBackStack(tag);
+        transaction.commit();
+    }
+
+    /**
+     * Метод вызова фрагмента сверху
+     * @param fragment Передать сюда искомый фрагмент
+     * @param tag Добавить новому фрагменут тег
+     */
+    public void loadFragmentFromTop(Fragment fragment, String tag){
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction transaction = fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_down, R.anim.exit_to_top);
+        transaction.replace(R.id.fragmentHome,fragment);
+        transaction.addToBackStack(tag);
+        transaction.commit();
     }
 
     /**

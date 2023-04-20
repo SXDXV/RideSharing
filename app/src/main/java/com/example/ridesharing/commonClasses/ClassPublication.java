@@ -1,39 +1,50 @@
-package com.example.ridesharing;
+package com.example.ridesharing.commonClasses;
 
 /**
  * Класс описания публикации. Необходим для получения информации с сервера и получения
  * структурированных данных
  */
 public class ClassPublication {
+    private String author_id;
     private String from;
     private String to;
     private String peoples;
     private String date;
+    private String time;
     private String price;
     private String comment;
     private boolean music;
     private boolean pets;
     private boolean talk;
     private boolean smoking;
-    private boolean client_finished;
 
-    public ClassPublication(String from, String to, String peoples, String date,
-                            String price, String comment, boolean music, boolean pets,
-                            boolean talk, boolean smoking, boolean client_finished) {
+    public ClassPublication(String author_id, String from, String to, String peoples,
+                            String date, String time, String price, String comment,
+                            boolean music, boolean pets, boolean talk,
+                            boolean smoking) {
+        this.author_id = author_id;
         this.from = from;
         this.to = to;
         this.peoples = peoples;
         this.date = date;
+        this.time = time;
         this.price = price;
         this.comment = comment;
         this.music = music;
         this.pets = pets;
         this.talk = talk;
         this.smoking = smoking;
-        this.client_finished = client_finished;
     }
 
     public ClassPublication() {
+    }
+
+    public String getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(String author_id) {
+        this.author_id = author_id;
     }
 
     public String getFrom() {
@@ -66,6 +77,14 @@ public class ClassPublication {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getPrice() {
@@ -114,13 +133,5 @@ public class ClassPublication {
 
     public void setSmoking(boolean smoking) {
         this.smoking = smoking;
-    }
-
-    public boolean isClient_finished() {
-        return client_finished;
-    }
-
-    public void setClient_finished(boolean client_finished) {
-        this.client_finished = client_finished;
     }
 }

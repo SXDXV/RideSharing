@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.ridesharing.fragments.FragmentLoginAuth;
+
 /**
  * Активность логина, содержащая фрагмента авторизации и реагистрации в системе
  */

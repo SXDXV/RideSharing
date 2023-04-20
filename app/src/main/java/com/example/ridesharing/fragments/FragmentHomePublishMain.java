@@ -1,4 +1,4 @@
-package com.example.ridesharing;
+package com.example.ridesharing.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -16,6 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.ridesharing.ActivityHome;
+import com.example.ridesharing.R;
+import com.example.ridesharing.commonClasses.ClassValidationColor;
+import com.example.ridesharing.fragments.helper.HelperFragmentDate;
+import com.example.ridesharing.fragments.helper.HelperFragmentFields;
+import com.example.ridesharing.fragments.helper.HelperFragmentTime;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
@@ -78,6 +85,9 @@ public class FragmentHomePublishMain extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.GONE);
+
         view = inflater.inflate(R.layout.fragment_home_publish_main, container, false);
         initComponents();
         UiD = FragmentLoginAuth.userID;

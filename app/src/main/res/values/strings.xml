@@ -21,6 +21,7 @@
     <string name="text_reg_first">Have no account?</string>
     <string name="text_reg_second">Register it now!</string>
     <string name="text_continue">Continue</string>
+    <string name="text_booking">Book your place</string>
     <string name="text_fromwhere">Where we go?</string>
     <string name="text_how_peoples">How many people can you pick up?</string>
     <string name="text_when">When will you go?</string>
@@ -35,6 +36,7 @@
     <string name="toast_invalid_data">There were problems with the entrance, please check the correctness of the entered data</string>
     <string name="toast_empty_data">You did not fill in all required fields!</string>
     <string name="toast_password_valid">The entered passwords do not match</string>
+    <string name="toast_your_seat_is_reserved">Your seat is reserved. Check your dialogues.</string>
 
     <string name="field_from">From</string>
     <string name="field_to">To</string>
@@ -68,6 +70,7 @@
 
 
     <string name="fragment_publish_publish_main">Let\'s clarify some details</string>
+    <string name="fragment_search_result_order">Trip details</string>
     <string name="fragment_trips_your_trips">Your trips</string>
     <string name="fragment_chat_chat">Chat with a fellow traveler</string>
     <string name="fragment_profile_profile">Your Profile</string>

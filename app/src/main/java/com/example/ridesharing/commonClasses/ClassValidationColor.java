@@ -1,4 +1,4 @@
-package com.example.ridesharing;
+package com.example.ridesharing.commonClasses;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.ridesharing.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 

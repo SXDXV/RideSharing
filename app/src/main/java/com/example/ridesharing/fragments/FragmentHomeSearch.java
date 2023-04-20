@@ -1,4 +1,4 @@
-package com.example.ridesharing;
+package com.example.ridesharing.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -19,15 +19,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.ridesharing.ActivityHome;
+import com.example.ridesharing.R;
+import com.example.ridesharing.commonClasses.ClassResizeAnimation;
+import com.example.ridesharing.commonClasses.ClassValidationColor;
 import com.example.ridesharing.dadata.Address;
 import com.example.ridesharing.dadata.DaData;
+import com.example.ridesharing.fragments.helper.HelperFragmentDate;
+import com.example.ridesharing.fragments.helper.HelperFragmentFields;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-import java.util.Stack;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -82,6 +88,9 @@ public class FragmentHomeSearch extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.VISIBLE);
+
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.fragment_home_search, container, false);
         initComponents();

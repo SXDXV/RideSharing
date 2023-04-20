@@ -1,4 +1,4 @@
-package com.example.ridesharing;
+package com.example.ridesharing.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,11 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.ridesharing.R;
+import com.example.ridesharing.commonClasses.ClassValidationColor;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.concurrent.Executor;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Класс фрагмента регистрации
@@ -33,6 +39,8 @@ public class FragmentLoginReg extends Fragment {
     private TextInputLayout confirmpassInput;
 
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("users");
 
     private View view;
     private String userID;
@@ -103,6 +111,7 @@ public class FragmentLoginReg extends Fragment {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 userID = user.getUid();
                                 Log.d(BASE_AUTH, "createUserWithEmail:success");
+                                realtimeDatabaseSetData(userID, "", name, email, phone);
                                 swipeFragment();
                             } else {
                                 Toast toast = Toast.makeText(getContext(),
@@ -121,6 +130,20 @@ public class FragmentLoginReg extends Fragment {
                     getResources().getString(R.string.toast_empty_data), Toast.LENGTH_LONG);
             toast.show();
         }
+    }
+
+    /**
+     * Заполнение базы данных по шаблону appointMap
+     */
+    public void realtimeDatabaseSetData(String id, String avatar, String name, String email, String phone){
+        Map<String, Object> appointMap = new HashMap<>();
+        appointMap.put("user_id", id);
+        appointMap.put("avatar", avatar);
+        appointMap.put("name", name);
+        appointMap.put("email", email);
+        appointMap.put("phone", phone);
+
+        myRef.child(id).setValue(appointMap);
     }
 
     /**

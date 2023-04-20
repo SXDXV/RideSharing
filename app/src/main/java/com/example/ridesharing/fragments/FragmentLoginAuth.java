@@ -1,7 +1,6 @@
-package com.example.ridesharing;
+package com.example.ridesharing.fragments;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.ridesharing.ActivityHome;
+import com.example.ridesharing.R;
+import com.example.ridesharing.commonClasses.ClassValidationColor;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

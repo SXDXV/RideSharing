@@ -24,12 +24,10 @@
             android:text="@string/fragment_trips_your_trips"
             android:textSize="30dp" />
 
-        <FrameLayout
-            android:id="@+id/fragmentHomeYourTrips"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content">
-
-        </FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerYourTrips"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

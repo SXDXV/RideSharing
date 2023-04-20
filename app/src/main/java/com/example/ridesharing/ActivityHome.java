@@ -8,6 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import com.example.ridesharing.fragments.FragmentHomeChat;
+import com.example.ridesharing.fragments.FragmentHomeProfile;
+import com.example.ridesharing.fragments.FragmentHomePublish;
+import com.example.ridesharing.fragments.FragmentHomeSearch;
+import com.example.ridesharing.fragments.FragmentHomeTrips;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;

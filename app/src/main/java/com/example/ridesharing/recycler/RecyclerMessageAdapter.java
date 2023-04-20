@@ -4,44 +4,41 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ridesharing.ClassPublication;
 import com.example.ridesharing.R;
+import com.example.ridesharing.commonClasses.ClassMessage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
  * Класс-адаптер для RecyclerView, который связывает источник данных с визуальным отображением
  * элемента на активности/фрагменте (в зависимости от того, где вызывается)
  */
-public class RecyclerYourPublicationsAdapter extends RecyclerView.Adapter<RecyclerYourPublicationsAdapter.ViewHolder> {
+public class RecyclerMessageAdapter extends RecyclerView.Adapter<RecyclerMessageAdapter.ViewHolder> {
 
-    public final OnPublicationClickListener onClickListener;
-    private final List<ClassPublication> mPublications;
+    public static final int MSG_TYPE_LEFT = 0;
+    public static final int MSG_TYPE_RIGHT = 1;
+    private final List<ClassMessage> mMessages;
     private final LayoutInflater inflater;
 
-    /**
-     * Интерфейс взаимодействия с RecyclerView, а именно установка прослушивателя на взаимодействие
-     */
-    public interface OnPublicationClickListener {
-        void onPublicationsClick(ClassPublication publications, int position);
-    }
+    private FirebaseUser user;
 
     /**
      * Конструктор класса адаптера
      * @param context Выбор места назождения (Чаще всего передается this, или getContext(),
      *                или getActivity() - по ситуации)
-     * @param mPublications Лист публикаций (источник данных)
-     * @param onClickListener Прослушиватель
+     * @param mMessages Лист публикаций (источник данных)
      */
-    public RecyclerYourPublicationsAdapter(Context context, List<ClassPublication> mPublications, OnPublicationClickListener onClickListener) {
-        this.onClickListener = onClickListener;
-        this.mPublications = mPublications;
+    public RecyclerMessageAdapter(Context context, List<ClassMessage> mMessages) {
+        this.mMessages = mMessages;
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -53,9 +50,14 @@ public class RecyclerYourPublicationsAdapter extends RecyclerView.Adapter<Recycl
      * @return Возврат ViewHolder с заполненной инфомрацией
      */
     @Override
-    public RecyclerYourPublicationsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.recycler_your_publications, parent, false);
-        return new ViewHolder(view);
+    public RecyclerMessageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == MSG_TYPE_RIGHT){
+            View view = inflater.inflate(R.layout.recycler_message_right, parent, false);
+            return new ViewHolder(view);
+        } else {
+            View view = inflater.inflate(R.layout.recycler_message_left, parent, false);
+            return new ViewHolder(view);
+        }
     }
 
     /**
@@ -65,14 +67,18 @@ public class RecyclerYourPublicationsAdapter extends RecyclerView.Adapter<Recycl
      * @param position Определяет позицию конкретно нажатого ViewHolder в RecyclerView
      */
     @Override
-    public void onBindViewHolder(@NonNull RecyclerYourPublicationsAdapter.ViewHolder holder, int position) {
-        ClassPublication publications = mPublications.get(position);
-        holder.itemView.setOnClickListener(v -> {
-            onClickListener.onPublicationsClick(publications, position);
-        });
+    public void onBindViewHolder(@NonNull RecyclerMessageAdapter.ViewHolder holder, int position) {
+        ClassMessage messages = mMessages.get(position);
 
-        holder.title.setText(publications.getFrom() + " - " + publications.getTo());
-        holder.price.setText("$" + publications.getPrice());
+        long time = messages.getTime();
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(time);
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+
+        //holder.userName.setText("");
+        holder.message.setText(messages.getMessage_text());
+        holder.time.setText(format.format(cal.getTime()));
+        //holder.countOfMessages.setText(messages.getCountOfMessages());
     }
 
     /**
@@ -80,20 +86,30 @@ public class RecyclerYourPublicationsAdapter extends RecyclerView.Adapter<Recycl
      */
     @Override
     public int getItemCount() {
-        return mPublications.size();
+        return mMessages.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (mMessages.get(position).getSender().equals(user.getUid())){
+            return MSG_TYPE_RIGHT;
+        } else {
+            return MSG_TYPE_LEFT;
+        }
     }
 
     /**
      * Непосредственно класс ViewHolder, позволяющий заполнять пространство внутри ячейки
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public TextView price;
+        public TextView message;
+        public TextView time;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.fromTo);
-            price = itemView.findViewById(R.id.textViewPricePublication);
+            message = itemView.findViewById(R.id.rv_chat_user_message);
+            time = itemView.findViewById(R.id.rv_chat_time);
         }
     }
 }

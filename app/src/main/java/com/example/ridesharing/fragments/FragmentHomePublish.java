@@ -1,4 +1,4 @@
-package com.example.ridesharing;
+package com.example.ridesharing.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ridesharing.recycler.RecyclerYourPublicationsAdapter;
+import com.example.ridesharing.R;
+import com.example.ridesharing.commonClasses.ClassPublication;
+import com.example.ridesharing.commonClasses.ClassResizeAnimation;
+import com.example.ridesharing.recycler.RecyclerYourPublicationsAndTripsAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,6 +59,9 @@ public class FragmentHomePublish extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.VISIBLE);
+
         view = inflater.inflate(R.layout.fragment_home_publish, container, false);
         UiD = FragmentLoginAuth.userID;
 
@@ -73,12 +80,13 @@ public class FragmentHomePublish extends Fragment{
      * @param list Исходный лист входных данных, получаемый в createPublicationsList
      */
     public void rvPublications(List<ClassPublication> list){
+        publications.clear();
         publications.addAll(list);
         RecyclerView rvNews = view.findViewById(R.id.recyclerYourPublications);
-        RecyclerYourPublicationsAdapter.OnPublicationClickListener publicationsClickListener = (publications, position) -> {
+        RecyclerYourPublicationsAndTripsAdapter.OnPublicationClickListener publicationsClickListener = (publications, position) -> {
 
         };
-        RecyclerYourPublicationsAdapter adapter = new RecyclerYourPublicationsAdapter(getContext() , publications, publicationsClickListener);
+        RecyclerYourPublicationsAndTripsAdapter adapter = new RecyclerYourPublicationsAndTripsAdapter(getContext() , publications, publicationsClickListener);
         rvNews.setAdapter(adapter);
         rvNews.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 

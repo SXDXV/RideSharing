@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/textHeader"
+                android:id="@+id/textView2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:text="@string/fragment_search_result_order" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainFromTo"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldFromPublishMain"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment_search_from"
+                        app:startIconDrawable="@drawable/ic_baseline_join_left_24"
+                        app:boxStrokeWidth="0dp"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:boxStrokeColor="@color/dark_main"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fieldSearchOrderFrom"
+                            style="@style/textSearchFields"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldToPublishMain"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fragment_search_to"
+                        android:layout_marginBottom="20dp"
+                        app:startIconDrawable="@drawable/ic_baseline_join_right_24"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:boxStrokeColor="@color/dark_main"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textSearchFields"
+                            android:id="@+id/fieldSearchOrderTo"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainPeoples"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:paddingRight="10dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/outlinedTextField"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center"
+                            app:startIconDrawable="@drawable/ic_baseline_person_4_24"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:boxCornerRadiusBottomEnd="40dp"
+                            app:boxCornerRadiusBottomStart="40dp"
+                            app:boxCornerRadiusTopEnd="40dp"
+                            app:boxCornerRadiusTopStart="40dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/textSearchFields"
+                                android:id="@+id/fieldSearchOrderPeoples"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainPrice"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="15dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldDatePublishMain"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_date_range_24"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textSearchFields"
+                            android:id="@+id/fieldSearchOrderDate"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldTimePublishMain"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_access_time_24"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textSearchFields"
+                            android:id="@+id/fieldSearchOrderTime"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainComment"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="15dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldPricePublishMain"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_monetization_on_24"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textSearchFields"
+                            android:id="@+id/fieldSearchOrderPrice"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainDate"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="15dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldCommentPublishMain"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_message_24"
+                        app:boxBackgroundColor="@color/very_light_dark"
+                        app:hintTextColor="@color/dark_main"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusBottomEnd="40dp"
+                        app:boxCornerRadiusBottomStart="40dp"
+                        app:boxCornerRadiusTopEnd="40dp"
+                        app:boxCornerRadiusTopStart="40dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/textSearchFields"
+                            android:id="@+id/fieldSearchOrderComment"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCardMainDetails"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                card_view:cardCornerRadius="40dp"
+                card_view:cardElevation="20dp"
+                android:outlineSpotShadowColor="@color/semi_dark"
+                android:alpha="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewMusic"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        card_view:srcCompat="@drawable/ic_baseline_monetization_on_24" />
+
+                    <ImageView
+                        android:id="@+id/imageViewPets"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        card_view:srcCompat="@drawable/ic_baseline_monetization_on_24" />
+
+                    <ImageView
+                        android:id="@+id/imageViewTalk"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        card_view:srcCompat="@drawable/ic_baseline_monetization_on_24" />
+
+                    <ImageView
+                        android:id="@+id/imageViewSmoking"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        card_view:srcCompat="@drawable/ic_baseline_monetization_on_24" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnToSearchOrderMain"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="100dp"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:text="@string/text_booking"
+                style="@style/textRegularBtnFill"
+                />
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

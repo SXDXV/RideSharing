@@ -1,4 +1,4 @@
-package com.example.ridesharing;
+package com.example.ridesharing.fragments.helper;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -15,22 +15,31 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.ridesharing.R;
+import com.example.ridesharing.fragments.FragmentHomePublishMain;
+import com.example.ridesharing.fragments.FragmentHomeSearch;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 
 /**
  * Класс фрагмента, отвечающего за переход на себя после нажатия на любое из полей родительского
- * фрагмента. Предназначен для заполнения текстовых полей.
+ * фрагмента. Предназначен для заполнения полей времени.
  */
-public class HelperFragmentFields extends Fragment{
+public class HelperFragmentTime extends Fragment{
     View view;
-    private static final String VIEW_NAME = "HelperFragmentFields";
+    private static final String VIEW_NAME = "HelperFragmentTime";
 
     TextView fieldName;
     String txtFieldName;
-    TextInputEditText field;
-    String txtField;
+    TextInputEditText hours;
+    TextInputEditText minutes;
     Button btnContinue;
     ImageView backSearch;
+
+    Button plusHours;
+    Button minusHours;
+    Button plusMinutes;
+    Button minusMinutes;
 
     Bundle bundleGet;
     Bundle bundleSet;
@@ -45,19 +54,67 @@ public class HelperFragmentFields extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.helper_fragment_fields, container, false);
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.GONE);
+
+        view = inflater.inflate(R.layout.helper_fragment_time, container, false);
         initComponents();
 
         bundleGet = getArguments();
         if (bundleGet != null) {
             txtFieldName = bundleGet.getString("FieldName");
             fieldName.setText(txtFieldName);
-            field.setText(bundleGet.getString("FieldText"));
+
+            if (bundleGet.getString("FieldText") != null){
+                String parts[] = bundleGet.getString("FieldText").split(":");
+                hours.setText(parts[0]);
+                minutes.setText(parts[1]);
+            }else {
+                hours.setText("12");
+                minutes.setText("30");
+            }
         }
+
+        setListenHoursMinutes(minusHours);
+        setListenHoursMinutes(plusHours);
+        setListenHoursMinutes(minusMinutes);
+        setListenHoursMinutes(plusMinutes);
 
         backToSearch(btnContinue);
         backToSearch(backSearch);
         return view;
+    }
+
+    /**
+     * Слушатель для добавления и уменьшения значений часов и минут
+     * @param button Передать элемент
+     */
+    @SuppressLint("NonConstantResourceId")
+    public void setListenHoursMinutes(View button){
+         button.setOnClickListener(v -> {
+            int workingHours = Integer.parseInt(hours.getText().toString());
+            int workingMinutes = Integer.parseInt(minutes.getText().toString());
+
+            switch (button.getId()){
+                case R.id.buttonMinusHours:
+                    if (workingHours>0) workingHours--;
+                    break;
+                case R.id.buttonPlusHours:
+                    if (workingHours<23) workingHours++;
+                    break;
+                case R.id.buttonMinusMinutes:
+                    if (workingMinutes>0) workingMinutes--;
+                    break;
+                case R.id.buttonPlusMinutes:
+                    if (workingMinutes<59) workingMinutes++;
+                    break;
+                default:
+                    break;
+            }
+
+            hours.setText(String.valueOf(workingHours));
+            minutes.setText(String.valueOf(workingMinutes));
+        });
     }
 
     /**
@@ -72,7 +129,8 @@ public class HelperFragmentFields extends Fragment{
             switch (btn.getId()){
                 case R.id.btnContinueFragmentSearch:
                     bundleSet.putString("fieldName", fieldName.getText().toString());
-                    bundleSet.putString("fieldText", field.getText().toString());
+                    bundleSet.putString("fieldText", hoursMinutesValidation(hours.getText().toString()) +
+                            ":" + hoursMinutesValidation(minutes.getText().toString()));
 
                     backToParent();
                     break;
@@ -89,6 +147,23 @@ public class HelperFragmentFields extends Fragment{
     }
 
     /**
+     * Валидация введенных минут и часов для красивого вывода в поле
+     * @param initial Входные данные
+     * @return Выходное валидное значение
+     */
+    private String hoursMinutesValidation(String initial){
+        String result;
+
+        if (Integer.parseInt(initial)>=1 && Integer.parseInt(initial)<=9){
+            result = "0" + String.valueOf(initial);
+        } else {
+            result = String.valueOf(initial);
+        }
+
+        return result;
+    }
+
+    /**
      * Определение, на какой конкретно фрагмент необходимо возвращаться
      */
     public void backToParent(){
@@ -101,13 +176,19 @@ public class HelperFragmentFields extends Fragment{
     }
 
     /**
-     * Инициализация копонентов View
+     * Инициализация компонентов View
      */
     public void initComponents(){
         fieldName = view.findViewById(R.id.fieldNameFragmentSearch);
-        field = view.findViewById(R.id.fieldFragmentSearch);
+        hours = view.findViewById(R.id.fieldHelperHours);
+        minutes = view.findViewById(R.id.fieldHelperMinutes);
         btnContinue = view.findViewById(R.id.btnContinueFragmentSearch);
         backSearch = view.findViewById(R.id.backToSearch);
+
+        minusHours = view.findViewById(R.id.buttonMinusHours);
+        plusHours = view.findViewById(R.id.buttonPlusHours);
+        minusMinutes = view.findViewById(R.id.buttonMinusMinutes);
+        plusMinutes = view.findViewById(R.id.buttonPlusMinutes);
     }
 
     /**
@@ -130,17 +211,17 @@ public class HelperFragmentFields extends Fragment{
      * @param bundle Передаваемые во фрагмент данные
      * @return возврат нового фрагмента
      */
-    public static HelperFragmentFields newInstance(Bundle bundle){
-        HelperFragmentFields helperFragmentFields = new HelperFragmentFields();
-        helperFragmentFields.setArguments(bundle);
-        return helperFragmentFields;
+    public static HelperFragmentTime newInstance(Bundle bundle){
+        HelperFragmentTime helperFragmentTime = new HelperFragmentTime();
+        helperFragmentTime.setArguments(bundle);
+        return helperFragmentTime;
     }
 
     /**
      * Метод создания нового фрагмента без указания передачи данных
      * @return вощвращает новый пустой фрагмент
      */
-    public static HelperFragmentFields newInstance(){
-        return new HelperFragmentFields();
+    public static HelperFragmentTime newInstance(){
+        return new HelperFragmentTime();
     }
 }

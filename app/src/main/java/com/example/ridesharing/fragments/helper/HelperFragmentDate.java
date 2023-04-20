@@ -1,8 +1,7 @@
-package com.example.ridesharing;
+package com.example.ridesharing.fragments.helper;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.text.SimpleDateFormat;
+import com.example.ridesharing.R;
+import com.example.ridesharing.fragments.FragmentHomePublishMain;
+import com.example.ridesharing.fragments.FragmentHomeSearch;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Класс фрагмента, отвечающего за переход на себя после нажатия на любое из полей родительского
@@ -50,6 +52,9 @@ public class HelperFragmentDate extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.GONE);
+
         view = inflater.inflate(R.layout.helper_fragment_date, container, false);
         initComponents();
 
