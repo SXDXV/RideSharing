@@ -24,12 +24,18 @@
             android:layout_marginTop="15dp"
             android:text="@string/fragment_search_search" />
 
+        <!-- Главный CardView - при необходимости просмотра раздокументировать код -->
+        <!-- Свернут изначально для плавной анимации по возвращению на фрагмент-->
+            <!--
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            -->
         <androidx.cardview.widget.CardView
             android:id="@+id/searchCardMain"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             card_view:cardCornerRadius="40dp"
             card_view:cardElevation="20dp"

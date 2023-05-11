@@ -25,7 +25,7 @@ public class ActivityHome extends AppCompatActivity {
 
     BottomNavigationView navigationView;
     HashMap<Integer, Integer> map;
-    public int oldIndex = 3;
+    public int oldIndex = 1;
     int newIndex;
 
     /**
@@ -37,11 +37,8 @@ public class ActivityHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         navigationView = findViewById(R.id.bottom_navigation);
-        navigationView.getMenu().getItem(2).setChecked(true);
-
-        loadFragmentFromLeft(FragmentHomeTrips.newInstance(),"home");
+        loadFragmentFromLeft(FragmentHomeSearch.newInstance(),"search");
 
         mapInit();
 
@@ -58,10 +55,6 @@ public class ActivityHome extends AppCompatActivity {
                 case R.id.men_publish:
                     chooseAnimation(oldIndex, newIndex, FragmentHomePublish.newInstance(), "publish");
                     //loadFragment(FragmentHomePublish.newInstance());
-                    return true;
-                case R.id.men_trips:
-                    chooseAnimation(oldIndex, newIndex, FragmentHomeTrips.newInstance(), "trips");
-                    //loadFragment(FragmentHomeTrips.newInstance());
                     return true;
                 case R.id.men_chat:
                     chooseAnimation(oldIndex, newIndex, FragmentHomeChat.newInstance(), "chat");
@@ -131,8 +124,8 @@ public class ActivityHome extends AppCompatActivity {
         map = new HashMap<>();
         map.put(R.id.men_search, 1);
         map.put(R.id.men_publish, 2);
-        map.put(R.id.men_trips, 3);
-        map.put(R.id.men_chat, 4);
-        map.put(R.id.men_profile, 5);
+        //map.put(R.id.men_trips, 3);
+        map.put(R.id.men_chat, 3);
+        map.put(R.id.men_profile, 4);
     }
 }

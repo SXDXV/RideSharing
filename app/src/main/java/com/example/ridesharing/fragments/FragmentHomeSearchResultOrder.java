@@ -118,7 +118,7 @@ public class FragmentHomeSearchResultOrder extends Fragment{
                 authorID = publicationVal.getAuthor_id();
                 tripID = snapshot.getKey();
                 firstMessage = "Здравствуйте! Еду с вами от '" + publicationVal.getFrom() + "' " +
-                        "до '" + publicationVal.getTo() + "' " + publicationVal.getDate() + "\n" +
+                        "до '" + publicationVal.getTo() + "' " + publicationVal.getDate() + ". " +
                         "Все в силе?";
                 fillFields(publicationVal);
             }

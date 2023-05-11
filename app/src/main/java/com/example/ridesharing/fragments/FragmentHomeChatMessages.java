@@ -1,10 +1,13 @@
 package com.example.ridesharing.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ridesharing.R;
+import com.example.ridesharing.commonClasses.ClassFirstLastItemDecorator;
 import com.example.ridesharing.commonClasses.ClassMessage;
+import com.example.ridesharing.commonClasses.ClassUser;
 import com.example.ridesharing.recycler.RecyclerMessageAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
@@ -39,12 +44,15 @@ public class FragmentHomeChatMessages extends Fragment{
     private ImageView backToChats;
     private ImageView sendMessageIcon;
     private TextInputEditText messageInput;
+    private TextView userName;
 
     private String chatName;
     private String receiver;
 
     private Bundle bundleGet = new Bundle();
     private Bundle bundleSet = new Bundle();
+
+    private Context mContext;
 
     RecyclerMessageAdapter messageAdapter;
     List<ClassMessage> messageList;
@@ -54,6 +62,12 @@ public class FragmentHomeChatMessages extends Fragment{
      * Конструктор класса фрагмента
      */
     public FragmentHomeChatMessages() {
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
     }
 
     /**
@@ -79,6 +93,7 @@ public class FragmentHomeChatMessages extends Fragment{
         try {
             if(bundleGet != null){
                 chatName = bundleGet.getString("ChatId");
+                createUserProfile(chatName);
             }
 
         }catch (Exception e){
@@ -94,11 +109,12 @@ public class FragmentHomeChatMessages extends Fragment{
         }
 
         chatMessagesRecycler.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        chatMessagesRecycler.addItemDecoration(new ClassFirstLastItemDecorator(250));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setStackFromEnd(true);
         chatMessagesRecycler.setLayoutManager(linearLayoutManager);
 
-        readMessages(FragmentLoginAuth.userID, receiver);
+        readMessages(mContext ,FragmentLoginAuth.userID, receiver);
 
         /**
          * Возврат на фрагмент чатов
@@ -114,6 +130,12 @@ public class FragmentHomeChatMessages extends Fragment{
         return view;
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mContext = null;
+    }
+
     /**
      * Заполнение базы данных по шаблону appointMap
      */
@@ -125,15 +147,16 @@ public class FragmentHomeChatMessages extends Fragment{
 
         Map<String, Object> appointMap = new HashMap<>();
         appointMap.put("chat_id", chatName);
-        appointMap.put("message_text", messageInput.getText().toString());
+        appointMap.put("message_text", messageInput.getText().toString().trim());
         appointMap.put("receiver", receiver);
         appointMap.put("sender", FragmentLoginAuth.userID);
         appointMap.put("time", time);
 
         myRef.child("Message" + time).setValue(appointMap);
+        messageInput.setText("");
     }
 
-    public void readMessages(String userId, String opponentId){
+    public void readMessages(Context context ,String userId, String opponentId){
         messageList = new ArrayList<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("chats/" + chatName + "/MessagesPool");
@@ -147,10 +170,27 @@ public class FragmentHomeChatMessages extends Fragment{
                             message.getReceiver().equals(opponentId) && message.getSender().equals(userId)){
                         messageList.add(message);
                     }
-
-                    messageAdapter = new RecyclerMessageAdapter(getContext(), messageList);
-                    chatMessagesRecycler.setAdapter(messageAdapter);
                 }
+                messageAdapter = new RecyclerMessageAdapter(context, messageList);
+                chatMessagesRecycler.setAdapter(messageAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void createUserProfile(String chatId){
+        chatId = chatId.replace(FragmentLoginAuth.userID, "");
+        chatId = chatId.replace("-", "");
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users/" + chatId);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ClassUser user = snapshot.getValue(ClassUser.class);
+                userName.setText(user.getName().toString());
             }
 
             @Override
@@ -198,6 +238,7 @@ public class FragmentHomeChatMessages extends Fragment{
         chatMessagesRecycler = view.findViewById(R.id.recyclerChatMessages);
         messageInput = view.findViewById(R.id.fieldMessageSend);
         sendMessageIcon = view.findViewById(R.id.sendMessage);
+        userName = view.findViewById(R.id.messages_chat_user_name);
     }
 
     /**

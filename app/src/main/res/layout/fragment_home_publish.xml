@@ -37,34 +37,38 @@
             />
 
         <TextView
+            android:id="@+id/emptyPublicationsTV"
             style="@style/textRegular"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:gravity="bottom"
-            android:text="@string/fragment_publish_your_publications" />
+            android:gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:textSize="20sp"
+            android:text="@string/no_your_publications" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/publishCard"
+            android:id="@+id/noPublicationsCard"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            card_view:cardCornerRadius="40dp"
-            card_view:cardElevation="20dp"
-            android:outlineSpotShadowColor="@color/semi_dark">
-            <ScrollView
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="100dp"
+            android:layout_margin="10dp"
+            android:outlineSpotShadowColor="@color/white"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/white">
+            <ImageView
+                android:id="@+id/emptyTrips"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerYourPublications"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-            </ScrollView>
+                android:layout_height="260dp"
+                android:scaleX="1.1"
+                android:scaleY="1.1"
+                card_view:srcCompat="@drawable/empty_publications"/>
         </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerYourPublications"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-20dp"/>
 
     </LinearLayout>
 

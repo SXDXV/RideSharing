@@ -139,9 +139,9 @@ public class FragmentLoginReg extends Fragment {
         Map<String, Object> appointMap = new HashMap<>();
         appointMap.put("user_id", id);
         appointMap.put("avatar", avatar);
-        appointMap.put("name", name);
-        appointMap.put("email", email);
-        appointMap.put("phone", phone);
+        appointMap.put("name", name.trim());
+        appointMap.put("email", email.trim());
+        appointMap.put("phone", phone.trim());
 
         myRef.child(id).setValue(appointMap);
     }

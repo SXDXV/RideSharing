@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,10 +15,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.ridesharing.ActivityHome;
 import com.example.ridesharing.R;
 import com.example.ridesharing.commonClasses.ClassValidationColor;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -81,6 +86,7 @@ public class FragmentLoginAuth extends Fragment {
         };
         login.setOnClickListener(listenerLogin);
 
+
         return view;
     }
 
@@ -131,8 +137,8 @@ public class FragmentLoginAuth extends Fragment {
         emailInput = view.findViewById(R.id.inputEmailAuth);
         passInput = view.findViewById(R.id.inputPasswordAuth);
 
-        emailTxt = emailInput.getEditText().getText().toString();
-        passTxt = passInput.getEditText().getText().toString();
+        emailTxt = emailInput.getEditText().getText().toString().trim();
+        passTxt = passInput.getEditText().getText().toString().trim();
     }
 
     /**

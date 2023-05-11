@@ -45,7 +45,7 @@ public class ActivityLaunch extends AppCompatActivity {
 
         ImageView im = findViewById(R.id.imageView2);
         Glide.with(this)
-                .load(R.drawable.full_ridesharing)
+                .load(R.drawable.full_ridesharing_launch_logo)
                 //.apply(RequestOptions.bitmapTransform(new BlurTransformation(25,3)))
                 .into(im);
     }

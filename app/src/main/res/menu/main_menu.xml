@@ -10,11 +10,6 @@
         android:title="@string/menu_publish"
         android:icon="@drawable/publish"/>
     <item
-        android:id="@+id/men_trips"
-        android:title="@string/menu_your_trips"
-        android:checked="true"
-        android:icon="@drawable/trips"/>
-    <item
         android:id="@+id/men_chat"
         android:title="@string/menu_chat"
         android:icon="@drawable/chat"/>

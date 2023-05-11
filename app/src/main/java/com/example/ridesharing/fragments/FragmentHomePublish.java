@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,10 +36,11 @@ import java.util.List;
  * фрагмент, а также список опубликованных поездок)
  */
 public class FragmentHomePublish extends Fragment{
-    View view;
+    private View view;
     private static final String VIEW_NAME = "FragmentHomePublish";
     private String UiD;
-    private CardView publicationsCard;
+    private CardView noPublicationsCard;
+    private TextView noPublicationsText;
 
     Button toPublishMain;
     ArrayList<ClassPublication> publications = new ArrayList<ClassPublication>();
@@ -61,11 +63,10 @@ public class FragmentHomePublish extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.VISIBLE);
+        bottomNavigationView.getMenu().getItem(1).setChecked(true);
 
         view = inflater.inflate(R.layout.fragment_home_publish, container, false);
         UiD = FragmentLoginAuth.userID;
-
-        publicationsCard = view.findViewById(R.id.publishCard);
 
         createPublicationsList();
         toPublishMain = view.findViewById(R.id.btnToPublishMain);
@@ -90,7 +91,13 @@ public class FragmentHomePublish extends Fragment{
         rvNews.setAdapter(adapter);
         rvNews.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-        resizeHeight(publicationsCard, 950, 1050);
+        if (!(publications.size() == 0)){
+            noPublicationsCard = view.findViewById(R.id.noPublicationsCard);
+            noPublicationsText = view.findViewById(R.id.emptyPublicationsTV);
+
+            resizeHeight(noPublicationsCard, 0,0);
+            noPublicationsText.setText(getResources().getString(R.string.fragment_publish_your_publications));
+        }
     }
 
     /**

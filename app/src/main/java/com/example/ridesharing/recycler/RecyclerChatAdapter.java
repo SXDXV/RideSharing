@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import com.example.ridesharing.R;
 import com.example.ridesharing.commonClasses.ClassChats;
 import com.example.ridesharing.commonClasses.ClassMessage;
 import com.example.ridesharing.commonClasses.ClassUser;
+import com.example.ridesharing.fragments.FragmentLoginAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -80,16 +82,23 @@ public class RecyclerChatAdapter extends RecyclerView.Adapter<RecyclerChatAdapte
             onClickListener.onChatClick(messages, position);
         });
 
-        ArrayList<ClassUser>  users = new ArrayList<ClassUser>();
+        holder.itemView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(),
+                R.anim.recycler_item_animation));
+
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot childSnapshot : snapshot.getChildren()){
-                    if(childSnapshot.getKey().equals(messages.getSender())){
-                        ClassUser user = childSnapshot.getValue(ClassUser.class);
-                        holder.userName.setText(user.getName());
+                    if(childSnapshot.getKey().equals(messages.getReceiver()) ||
+                            childSnapshot.getKey().equals(messages.getSender())){
+                        String[] chatMembers = messages.getChat_id().split("-");
+                        for(int i=0; i<2; i++){
+                            if(!chatMembers[i].equals(FragmentLoginAuth.userID)){
+                                getCurrentUser(holder, chatMembers[i]);
+                            }
+                        }
                     }
                 }
             }
@@ -105,7 +114,7 @@ public class RecyclerChatAdapter extends RecyclerView.Adapter<RecyclerChatAdapte
         cal.setTimeInMillis(time);
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
 
-        //holder.userName.setText("");
+        //holder.userName.setText(messages);
         try {
             holder.message.setText(messages.getMessage_text().substring(0,27) + "...");
         } catch (Exception e){
@@ -113,6 +122,23 @@ public class RecyclerChatAdapter extends RecyclerView.Adapter<RecyclerChatAdapte
         }
         holder.time.setText(format.format(cal.getTime()));
         //holder.countOfMessages.setText(messages.getCountOfMessages());
+    }
+
+    public void getCurrentUser(@NonNull RecyclerChatAdapter.ViewHolder holder, String id){
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users/" + id);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ClassUser user = snapshot.getValue(ClassUser.class);
+                holder.userName.setText(user.getName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     /**

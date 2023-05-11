@@ -79,7 +79,7 @@ public class HelperFragmentFields extends Fragment{
             switch (btn.getId()){
                 case R.id.btnContinueFragmentSearch:
                     bundleSet.putString("fieldName", fieldName.getText().toString());
-                    bundleSet.putString("fieldText", field.getText().toString());
+                    bundleSet.putString("fieldText", field.getText().toString().trim());
 
                     backToParent();
                     break;

@@ -46,31 +46,26 @@ public class FragmentHomeSearch extends Fragment{
     private static final String TOKEN = "0bf33d540f944deeddf92aaee8f1a60de7fcea29";
     private static final String SECRET_TOKEN = "cf86dcb6b9e1cc4279ab848a561c8625d84f8d0d";
 
-    CardView searchCard;
-    boolean hidden = true;
-    ImageView dropDown;
-    TextInputEditText from;
-    TextInputLayout fromInput;
+    private CardView searchCard;
+    private boolean hidden = true;
+    private ImageView dropDown;
+    private TextInputEditText from;
+    private TextInputLayout fromInput;
+    private TextInputEditText to;
+    private TextInputLayout toInput;
+    private TextInputEditText peoples;
+    private TextInputEditText date;
+    private TextInputLayout dateInput;
+    private CheckBox pickUp;
+    private Button plusPeople;
+    private Button minusPeople;
+    private Button btnContinue;
+    private Bundle bundleGet = new Bundle();
+    private Bundle bundleSet = new Bundle();
 
-    TextInputEditText to;
-    TextInputLayout toInput;
-
-    TextInputEditText peoples;
-
-    TextInputEditText date;
-    TextInputLayout dateInput;
-
-    CheckBox pickUp;
-
-    Button plusPeople;
-    Button minusPeople;
-    Button btnContinue;
-
-    Bundle bundleGet = new Bundle();
-    Bundle bundleSet = new Bundle();
-
-    TextView tvMap;
-    ImageView ivMap;
+    private TextView tvMap;
+    private ImageView ivMap;
+    private TextView peoplesText;
 
     /**
      * Конструктор класса фрагмента поиска
@@ -90,6 +85,7 @@ public class FragmentHomeSearch extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.VISIBLE);
+        bottomNavigationView.getMenu().getItem(0).setChecked(true);
 
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.fragment_home_search, container, false);
@@ -133,6 +129,7 @@ public class FragmentHomeSearch extends Fragment{
 
         // Animation cardview
         resizeHeight(searchCard, 950, 530);
+        peoplesText.setText("");
         // Listener to animation cardview on touch
 
         setListen(from);
@@ -146,10 +143,12 @@ public class FragmentHomeSearch extends Fragment{
          */
         View.OnClickListener listenerDropDown = v -> {
             if (hidden){
+                peoplesText.setText("");
                 resizeHeight(searchCard, 950, 530);
                 dropDown.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
                 hidden = false;
             } else {
+                peoplesText.setText(getResources().getString(R.string.fragment_search_count_peoples));
                 resizeHeight(searchCard, 950, 1200);
                 dropDown.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
                 hidden = true;
@@ -186,6 +185,11 @@ public class FragmentHomeSearch extends Fragment{
         tvMap.setOnClickListener(listenerMap);
         ivMap.setOnClickListener(listenerMap);
         return view;
+    }
+
+    public void onDestroy () {
+        super.onDestroy();
+        resizeHeight(searchCard, 0, 0);
     }
 
     /**
@@ -336,6 +340,7 @@ public class FragmentHomeSearch extends Fragment{
         btnContinue = view.findViewById(R.id.continueBtnSearch);
         tvMap = view.findViewById(R.id.textViewMap);
         ivMap = view.findViewById(R.id.imageViewMap);
+        peoplesText = view.findViewById(R.id.textViewCountPeople);
 
         fromInput = view.findViewById(R.id.outlinedTextFieldFromSearch);
         toInput = view.findViewById(R.id.outlinedTextFieldToSearch);

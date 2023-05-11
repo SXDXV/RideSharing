@@ -12,8 +12,7 @@
         android:layout_width="106dp"
         android:layout_height="81dp"
         android:layout_gravity="center"
-        android:layout_marginTop="90dp"
-        app:srcCompat="@drawable/not_full_ridesharing" />
+        android:layout_marginTop="90dp" />
 
     <FrameLayout
         android:id="@+id/fragmentLogin"

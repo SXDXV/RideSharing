@@ -50,67 +50,10 @@ public class FragmentHomeTrips extends Fragment{
         bottomNavigationView.setVisibility(View.VISIBLE);
 
         view = inflater.inflate(R.layout.fragment_home_trips, container, false);
-        createTripsList();
         return view;
     }
 
-    /**
-     * Метод заполнения RecyclerView
-     * @param list Передать источник данных
-     */
-    public void rvPublications(ArrayList<ClassPublication> list) {
-        RecyclerView rvNews = view.findViewById(R.id.recyclerYourTrips);
-        RecyclerYourPublicationsAndTripsAdapter.OnPublicationClickListener publicationsClickListener = (publications, position) -> {
 
-        };
-        RecyclerYourPublicationsAndTripsAdapter adapter = new RecyclerYourPublicationsAndTripsAdapter(getContext(), list, publicationsClickListener);
-        rvNews.setAdapter(adapter);
-        rvNews.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-    }
-
-    public void createTripsList() {
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("trips");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<String> references = new ArrayList<>();
-                for(DataSnapshot childSnapshot : snapshot.getChildren()){
-                    ClassTrip trip = childSnapshot.getValue(ClassTrip.class);
-                    references.add(trip.getTrip_id());
-                }
-                createPublicationsList(references);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    public void createPublicationsList(ArrayList<String> references){
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("publish");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<ClassPublication> yourTrips = new ArrayList<>();
-                for (DataSnapshot childSnapshot : snapshot.getChildren()){
-                    for (String reference : references){
-                        if (childSnapshot.getKey().equals(reference)){
-                            ClassPublication classPublication = childSnapshot.getValue(ClassPublication.class);
-                            yourTrips.add(classPublication);
-                        }
-                    }
-                }
-                rvPublications(yourTrips);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     /**
      * Метод создания нового фрагмента без указания передачи данных
