@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prompt_email"></string>
+    <string name="prompt_password"></string>
+    <string name="action_sign_in_short"></string>
+    <string name="action_sign_in"></string>
+
+    <string name="app_name">RideSharing</string>
+    <string name="frag_auth">Авторизация</string>
+    <string name="frag_reg">Регистрация</string>
+    <string name="text_email">Эл. Почта</string>
+    <string name="text_name">Имя</string>
+    <string name="text_phone">Номер телефона</string>
+    <string name="text_all_fields">Все поля обязательны для заполнения</string>
+    <string name="text_password">Пароль</string>
+    <string name="text_password_confirm">Подтвердите пароль</string>
+    <string name="text_check_remember">запомнить меня</string>
+    <string name="text_btn_login">Авторизоваться</string>
+    <string name="text_btn_reg">Зарегистрироваться</string>
+    <string name="text_btn_auth">Назад</string>
+    <string name="frag_register">Регистрация</string>
+    <string name="text_reg_first">Нет аккаунта?</string>
+    <string name="text_reg_second">Нажмите сюда!</string>
+    <string name="text_continue">Продолжить</string>
+    <string name="text_booking">Забронировать место</string>
+    <string name="text_change_profile_info">Изменить информацию</string>
+    <string name="text_fromwhere">Куда едем?</string>
+    <string name="text_how_peoples">Сколько человек возьмем?</string>
+    <string name="text_when">Когда поедем?</string>
+    <string name="text_price">Сколько стоит место в вашей машине</string>
+    <string name="text_your_avatar">Ваш аватар</string>
+    <string name="text_your_name">Ваше имя</string>
+    <string name="text_your_phone">Ваш телефон</string>
+    <string name="text_your_passport">Ваш паспорт</string>
+    <string name="text_your_email">Ваша почта</string>
+    <string name="text_passport_verified">Паспорт подтвержден</string>
+    <string name="text_passpor_not_verified">Паспорт не подтвержден</string>
+    <string name="text_another_name">Имя</string>
+    <string name="text_another_phone">Номер телефона</string>
+    <string name="text_another_passport">Паспорт</string>
+    <string name="text_another_email">Эл. почта</string>
+    <string name="text_comment">Можно оставить комментарий попутчику</string>
+    <string name="text_details">И еще немного деталей</string>
+    <string name="text_music">Поедете с музыкой</string>
+    <string name="text_pets">Можно с животными</string>
+    <string name="text_talk">С вами можно будет поговорить</string>
+    <string name="text_smoking">Можно курить в машине</string>
+    <string name="no_trips">У вас пока нет поездок</string>
+    <string name="no_your_publications">Вы пока ничего не опубликовали</string>
+
+    <string name="toast_invalid_data">Возникли проблемы со входом. Проверьте правильность введенных данных.</string>
+    <string name="toast_empty_data">Вы не заполнили все обязательные поля.</string>
+    <string name="toast_password_valid">Вы ввели неверный пароль.</string>
+    <string name="toast_your_seat_is_reserved">Вы забронировали место. Проверьте свои диалоги.</string>
+
+    <string name="field_from">Откуда</string>
+    <string name="field_to">Куда</string>
+    <string name="field_date">Дата отправления</string>
+    <string name="field_time">Время отправления</string>
+    <string name="field_price">Стоимость места</string>
+    <string name="field_comment">Комментарий</string>
+    <string name="field_hours">Часы</string>
+    <string name="field_minutes">Минуты</string>
+
+    <string name="text_invalid_date">Необходимо выбрать дату не раньше текущей!</string>
+
+    <string name="menu_search">поиск</string>
+    <string name="menu_publish">публикация</string>
+    <string name="menu_your_trips">поездки</string>
+    <string name="menu_chat">чат</string>
+    <string name="menu_profile">профиль</string>
+
+    <string name="fragment_search_search">Найти поездку</string>
+    <string name="fragment_search_result">Вот все что мы нашли по вашему запросу:</string>
+    <string name="fragment_search_from">Откуда</string>
+    <string name="fragment_search_to">Куда</string>
+    <string name="fragment_search_count_peoples">Сколько людей едет?</string>
+    <string name="fragment_search_pick_up">Подбирать людей по пути</string>
+    <string name="fragment_search_date">Когда вы планируете поездку?</string>
+    <string name="fragment_search_map">Всем по пути!</string>
+
+    <string name="fragment_publish_publish">Опубликуйте предложение</string>
+    <string name="fragment_publish_button">Я еду!</string>
+    <string name="fragment_publish_your_publications">Это ваши публикации:</string>
+
+    <string name="fragment_search_map_map">Посмотрите поездки на карте!</string>
+
+    <string name="fragment_publish_publish_main">Уточним еще немного деталей</string>
+    <string name="fragment_search_result_order">Детали поездки</string>
+    <string name="fragment_trips_your_trips">Ваши поездки</string>
+    <string name="fragment_home_profile_edit">Редактировать профиль</string>
+    <string name="fragment_chat_profile_check">Ваш собеседник</string>
+    <string name="fragment_chat_chat">Чат с попутчиком</string>
+    <string name="fragment_profile_profile">Ваш профиль</string>
+
+
+</resources>

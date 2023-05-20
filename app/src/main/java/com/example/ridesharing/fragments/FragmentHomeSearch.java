@@ -130,7 +130,6 @@ public class FragmentHomeSearch extends Fragment{
         // Animation cardview
         resizeHeight(searchCard, 950, 530);
         peoplesText.setText("");
-        // Listener to animation cardview on touch
 
         setListen(from);
         setListen(to);
@@ -175,15 +174,6 @@ public class FragmentHomeSearch extends Fragment{
 
         };
         btnContinue.setOnClickListener(listenerContinue);
-
-        /**
-         * Нереализованный метод загрузки карты
-         */
-        View.OnClickListener listenerMap = v -> {
-            loadFragmentFromDown(FragmentHomeSearchMap.newInstance(), "Map");
-        };
-        tvMap.setOnClickListener(listenerMap);
-        ivMap.setOnClickListener(listenerMap);
         return view;
     }
 
@@ -338,8 +328,6 @@ public class FragmentHomeSearch extends Fragment{
         plusPeople = view.findViewById(R.id.buttonPlus);
         pickUp = view.findViewById(R.id.checkBoxPickUp);
         btnContinue = view.findViewById(R.id.continueBtnSearch);
-        tvMap = view.findViewById(R.id.textViewMap);
-        ivMap = view.findViewById(R.id.imageViewMap);
         peoplesText = view.findViewById(R.id.textViewCountPeople);
 
         fromInput = view.findViewById(R.id.outlinedTextFieldFromSearch);

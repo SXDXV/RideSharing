@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:fontFamily="sans-serif-black"
-                android:text="@string/fragment_home_profile_edit"
+                android:text="@string/fragment_chat_profile_check"
                 android:textSize="30dp" />
 
             <androidx.cardview.widget.CardView
@@ -74,7 +74,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="15dp"
                         android:gravity="bottom"
-                        android:text="@string/text_your_name" />
+                        android:text="@string/text_another_name" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/outlinedTextFieldPriceEditName"
@@ -96,6 +96,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             style="@style/textSearchFields"
                             android:id="@+id/textEditProfileName"
+                            android:clickable="false"
+                            android:focusable="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -126,7 +128,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="15dp"
                         android:gravity="bottom"
-                        android:text="@string/text_your_phone" />
+                        android:text="@string/text_another_phone" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/outlinedTextFieldPriceEditPhone"
@@ -148,6 +150,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             style="@style/textSearchFields"
                             android:id="@+id/textEditProfilePhone"
+                            android:clickable="false"
+                            android:focusable="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -178,7 +182,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="15dp"
                         android:gravity="bottom"
-                        android:text="@string/text_your_passport" />
+                        android:text="@string/text_another_passport" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/outlinedTextFieldPriceEditPassport"
@@ -200,6 +204,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             style="@style/textSearchFields"
                             android:id="@+id/textEditProfilePassport"
+                            android:clickable="false"
+                            android:focusable="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -212,6 +218,7 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="60dp"
                 card_view:cardCornerRadius="40dp"
                 card_view:cardElevation="20dp"
                 android:outlineSpotShadowColor="@color/semi_dark"
@@ -220,6 +227,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+
                     android:orientation="vertical"
                     android:layout_marginBottom="15dp">
 
@@ -230,7 +238,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="15dp"
                         android:gravity="bottom"
-                        android:text="@string/text_your_email" />
+                        android:text="@string/text_another_email" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/outlinedTextFieldPriceEditEmail"
@@ -252,6 +260,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             style="@style/textSearchFields"
                             android:id="@+id/textEditProfileEmail"
+                            android:clickable="false"
+                            android:focusable="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -259,18 +269,6 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/btnToProfile"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_gravity="center"
-                android:textAllCaps="false"
-                android:text="@string/text_continue"
-                style="@style/textRegularBtnFill"
-                />
         </LinearLayout>
     </ScrollView>
 

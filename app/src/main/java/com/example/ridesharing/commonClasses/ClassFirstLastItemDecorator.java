@@ -5,6 +5,9 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * Класс, отвечающий за декорацию первого и последнего элемента RecyclerView
+ */
 public class ClassFirstLastItemDecorator extends RecyclerView.ItemDecoration {
     private int padding;
 

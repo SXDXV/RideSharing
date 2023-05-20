@@ -1,5 +1,8 @@
 package com.example.ridesharing.commonClasses;
 
+/**
+ * Класс, отвечающий за создание экземпляра пользователя
+ */
 public class ClassUser {
     private String user_id;
     private String avatar;

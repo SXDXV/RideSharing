@@ -1,12 +1,15 @@
 package com.example.ridesharing.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,14 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.example.ridesharing.ActivityHome;
 import com.example.ridesharing.R;
 import com.example.ridesharing.commonClasses.ClassValidationColor;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -38,12 +37,18 @@ public class FragmentLoginAuth extends Fragment {
     private Intent toHome;
     private TextInputLayout emailInput;
     private TextInputLayout passInput;
+    private ImageView googleAuth;
+    private CheckBox remember;
 
     private FirebaseAuth mAuth;
 
     private View view;
     private String emailTxt;
     private String passTxt;
+
+    private static final String APP_PREFERENCES = "uidPref";
+    private static final String APP_PREFERENCES_USERID = "userID";
+    private SharedPreferences mSettings;
 
     /**
      * Конструктор класса фрагмента
@@ -62,6 +67,13 @@ public class FragmentLoginAuth extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_login_auth, container, false);
+        mSettings = getContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
+        if(mSettings.contains(APP_PREFERENCES_USERID)) {
+            userID = mSettings.getString(APP_PREFERENCES_USERID, "");
+            toHome = new Intent(getContext(), ActivityHome.class);
+            startActivity(toHome);
+        }
 
         toRegistration = view.findViewById(R.id.textToReg);
         login = view.findViewById(R.id.loginBtn);
@@ -79,13 +91,11 @@ public class FragmentLoginAuth extends Fragment {
                 initComponents();
                 sign(emailTxt, passTxt);
                 toHome = new Intent(getContext(), ActivityHome.class);
-                //startActivity(toHome);
             } catch (Exception exception){
                 Log.d(BASE_AUTH, "Log: " + exception);
             }
         };
         login.setOnClickListener(listenerLogin);
-
 
         return view;
     }
@@ -104,6 +114,11 @@ public class FragmentLoginAuth extends Fragment {
                             Log.d(BASE_AUTH, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             userID = user.getUid();
+                            if (remember.isChecked()){
+                                SharedPreferences.Editor editor = mSettings.edit();
+                                editor.putString(APP_PREFERENCES_USERID, userID);
+                                editor.apply();
+                            }
                             startActivity(toHome);
                         } else {
                             Toast toast = Toast.makeText(getContext(),
@@ -136,6 +151,7 @@ public class FragmentLoginAuth extends Fragment {
     public void initComponents(){
         emailInput = view.findViewById(R.id.inputEmailAuth);
         passInput = view.findViewById(R.id.inputPasswordAuth);
+        remember = view.findViewById(R.id.checkBox);
 
         emailTxt = emailInput.getEditText().getText().toString().trim();
         passTxt = passInput.getEditText().getText().toString().trim();

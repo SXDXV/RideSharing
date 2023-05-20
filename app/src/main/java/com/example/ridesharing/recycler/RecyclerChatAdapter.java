@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ridesharing.R;
 import com.example.ridesharing.commonClasses.ClassChats;
 import com.example.ridesharing.commonClasses.ClassMessage;
@@ -35,6 +37,7 @@ public class RecyclerChatAdapter extends RecyclerView.Adapter<RecyclerChatAdapte
     public final OnChatClickListener onClickListener;
     private final List<ClassMessage> mMessages;
     private final LayoutInflater inflater;
+    private Context context;
 
     /**
      * Интерфейс взаимодействия с RecyclerView, а именно установка прослушивателя на взаимодействие
@@ -66,6 +69,7 @@ public class RecyclerChatAdapter extends RecyclerView.Adapter<RecyclerChatAdapte
     @Override
     public RecyclerChatAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recycler_chat, parent, false);
+        context = parent.getContext();
         return new ViewHolder(view);
     }
 
@@ -132,6 +136,10 @@ public class RecyclerChatAdapter extends RecyclerView.Adapter<RecyclerChatAdapte
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ClassUser user = snapshot.getValue(ClassUser.class);
                 holder.userName.setText(user.getName());
+                if (!user.getAvatar().equals("")){
+                    Glide.with(context).load(user.getAvatar())
+                            .into(holder.avatar);
+                }
             }
 
             @Override
@@ -156,14 +164,16 @@ public class RecyclerChatAdapter extends RecyclerView.Adapter<RecyclerChatAdapte
         public TextView userName;
         public TextView message;
         public TextView time;
-        public TextView countOfMessages;
+        public ImageView avatar;
+        //public TextView countOfMessages;
 
         public ViewHolder(View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.rv_chat_user_name);
             message = itemView.findViewById(R.id.rv_chat_message);
             time = itemView.findViewById(R.id.rv_chat_time);
-            countOfMessages = itemView.findViewById(R.id.rv_chat_count_of_messages);
+            avatar = itemView.findViewById(R.id.chatAvatar);
+            //countOfMessages = itemView.findViewById(R.id.rv_chat_count_of_messages);
         }
     }
 }

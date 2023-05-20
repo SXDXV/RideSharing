@@ -1,5 +1,8 @@
 package com.example.ridesharing.commonClasses;
 
+/**
+ * Класс, отвечающий за создание екземпляра поездки
+ */
 public class ClassTrip {
     private String trip_id;
     private Boolean status;

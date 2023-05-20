@@ -29,7 +29,7 @@
                 app:cardBackgroundColor="@color/main_color">
 
                 <ImageView
-                    android:id="@+id/imageView5"
+                    android:id="@+id/avatarIntoDialig"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     card_view:srcCompat="@drawable/no_photo_avatar" />
@@ -76,7 +76,7 @@
             android:gravity="center_vertical">
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:boxStrokeWidth="3dp"
                 app:boxBackgroundColor="@color/white"

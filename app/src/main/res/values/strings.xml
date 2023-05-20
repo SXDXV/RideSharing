@@ -32,12 +32,18 @@
     <string name="text_your_phone">Your phone</string>
     <string name="text_your_passport">Your passport</string>
     <string name="text_your_email">Your email</string>
+    <string name="text_another_name">Name</string>
+    <string name="text_another_phone">Phone</string>
+    <string name="text_another_passport">Passport</string>
+    <string name="text_another_email">Email</string>
+    <string name="text_passport_verified">User passport confirmed</string>
+    <string name="text_passpor_not_verified">User passport is not confirmed</string>
     <string name="text_comment">Want to leave a comment for a fellow?</string>
     <string name="text_details">And a few more details</string>
     <string name="text_music">Will you go with music?</string>
     <string name="text_pets">Companion can take a pets</string>
     <string name="text_talk">Are you talkative?</string>
-    <string name="text_smoking">Сan smoke in the car?</string>So far there are no trips
+    <string name="text_smoking">Сan smoke in the car?</string>
     <string name="no_trips">So far there are no trips</string>
     <string name="no_your_publications">You haven\'t posted anything yet</string>
 
@@ -55,6 +61,8 @@
     <string name="field_hours">Hours</string>
     <string name="field_minutes">Minutes</string>
 
+    <string name="text_invalid_date">You must select a date no earlier than the current one!</string>
+
     <string name="menu_search">search</string>
     <string name="menu_publish">publish</string>
     <string name="menu_your_trips">trips</string>
@@ -68,7 +76,7 @@
     <string name="fragment_search_count_peoples">How many people are traveling?</string>
     <string name="fragment_search_pick_up">Pick up fellow travelers</string>
     <string name="fragment_search_date">When do you want to travel?</string>
-    <string name="fragment_search_map">Or check the map!</string>
+    <string name="fragment_search_map">Everyone on the way!</string>
 
     <string name="fragment_search_map_map">Check out the offers on the map!</string>
 
@@ -76,11 +84,11 @@
     <string name="fragment_publish_button">I\'m going!</string>
     <string name="fragment_publish_your_publications">There is your publications</string>
 
-
     <string name="fragment_publish_publish_main">Let\'s clarify some details</string>
     <string name="fragment_search_result_order">Trip details</string>
     <string name="fragment_trips_your_trips">Your trips</string>
     <string name="fragment_home_profile_edit">Edit your information</string>
+    <string name="fragment_chat_profile_check">Your interlocutor</string>
     <string name="fragment_chat_chat">Chat with a fellow traveler</string>
     <string name="fragment_profile_profile">Your Profile</string>
 

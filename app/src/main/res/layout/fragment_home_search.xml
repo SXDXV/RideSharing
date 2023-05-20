@@ -66,7 +66,7 @@
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
                             android:layout_marginTop="10dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="60dp"
                             android:hint="@string/fragment_search_from"
                             app:startIconDrawable="@drawable/ic_baseline_join_left_24"
                             app:boxStrokeWidth="0dp"
@@ -96,7 +96,7 @@
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
                             android:layout_marginTop="10dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="60dp"
                             android:hint="@string/fragment_search_to"
                             android:layout_marginBottom="20dp"
                             app:startIconDrawable="@drawable/ic_baseline_join_right_24"
@@ -268,6 +268,7 @@
             card_view:cardElevation="20dp"
             android:outlineSpotShadowColor="@color/semi_dark"
             android:alpha="1.0">
+
 
             <FrameLayout
                 android:layout_width="match_parent"

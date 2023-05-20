@@ -1,5 +1,8 @@
 package com.example.ridesharing.fragments;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.ridesharing.ActivityLogin;
 import com.example.ridesharing.R;
 import com.example.ridesharing.commonClasses.ClassPublication;
 import com.example.ridesharing.commonClasses.ClassResizeAnimation;
@@ -43,10 +47,15 @@ public class FragmentHomeProfile extends Fragment{
     private View view;
     private ImageView blurAvatar;
     private ImageView avatar;
+    private ImageView logout;
     private TextView noTripsText;
     private CardView noTripsCard;
     private TextView userName;
     private Button toEdit;
+
+    private static final String APP_PREFERENCES = "uidPref";
+    private static final String APP_PREFERENCES_USERID = "userID";
+    private SharedPreferences mSettings;
 
     /**
      * Констуктор класса фрагмента
@@ -66,9 +75,20 @@ public class FragmentHomeProfile extends Fragment{
 
         createTripsList();
 
-        toEdit.setOnClickListener(v -> {
+        View.OnClickListener goToEdit = v->{
             loadFragmentFromTop(FragmentHomeProfileEdit.newInstance(), "profileEdit");
-        });
+        };
+        toEdit.setOnClickListener(goToEdit);
+
+        View.OnClickListener logOut = v->{
+            mSettings = getContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.clear();
+            editor.apply();
+            startActivity(new Intent(getActivity(), ActivityLogin.class));
+            getActivity().finish();
+        };
+        logout.setOnClickListener(logOut);
 
         return view;
     }
@@ -107,7 +127,7 @@ public class FragmentHomeProfile extends Fragment{
      * Метод заполнения RecyclerView
      * @param list Передать источник данных
      */
-    public void rvPublications(ArrayList<ClassPublication> list) {
+    public void rvTrips(ArrayList<ClassPublication> list) {
         RecyclerView rvNews = view.findViewById(R.id.recyclerYourTrips);
         RecyclerYourPublicationsAndTripsAdapter.OnPublicationClickListener publicationsClickListener = (publications, position) -> {
 
@@ -159,7 +179,7 @@ public class FragmentHomeProfile extends Fragment{
                         }
                     }
                 }
-                rvPublications(yourTrips);
+                rvTrips(yourTrips);
             }
 
             @Override
@@ -203,6 +223,7 @@ public class FragmentHomeProfile extends Fragment{
         userName = view.findViewById(R.id.userNameProfile);
         toEdit = view.findViewById(R.id.btnToSearchOrderMain);
         avatar = view.findViewById(R.id.imageAvatarFocus);
+        logout = view.findViewById(R.id.logout);
     }
 
     /**

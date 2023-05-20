@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Comparator;
 
 /**
  * Класс фрагмента, отвечающего за переход на себя после нажатия на любое из полей родительского
@@ -61,25 +63,41 @@ public class HelperFragmentDate extends Fragment{
         bundleGet = getArguments();
         if (bundleGet != null) {
             txtFieldName = bundleGet.getString("FieldName");
+            txtDate = bundleGet.getString("FieldName");
             fieldName.setText(txtFieldName);
 
-            Calendar calendar = Calendar.getInstance();
-            String parts[] = bundleGet.getString("FieldText").split("-");
-            int day = Integer.parseInt(parts[0]);
-            int month = Integer.parseInt(parts[1]);
-            int year = Integer.parseInt(parts[2]);
-            calendar.set(year, month-1, day);
-
-            calendarView.setDate(calendar.getTimeInMillis());
+            calendarSet();
         }
 
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            txtDate = String.valueOf(dayMonthValidation(dayOfMonth) + "-" + dayMonthValidation(month+1) + "-" + year);
+            String txtDateTransfer = String.valueOf(dayMonthValidation(dayOfMonth) + "-" + dayMonthValidation(month+1) + "-" + year);
+            Comparator<String> comparator = Comparator.naturalOrder();
+            int result = comparator.compare(txtDateTransfer, bundleGet.getString("FieldText"));
+
+            if (result < 0) {
+                calendarSet();
+                Toast toast = Toast.makeText(getContext(),
+                        getResources().getString(R.string.text_invalid_date), Toast.LENGTH_SHORT);
+                toast.show();
+            } else if (result >= 0) {
+                txtDate = txtDateTransfer;
+            }
         });
 
         backToSearch(btnContinue);
         backToSearch(backSearch);
         return view;
+    }
+
+    public void calendarSet(){
+        Calendar calendar = Calendar.getInstance();
+        String parts[] = bundleGet.getString("FieldText").split("-");
+        int day = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int year = Integer.parseInt(parts[2]);
+        calendar.set(year, month-1, day);
+
+        calendarView.setDate(calendar.getTimeInMillis());
     }
 
     /**
@@ -100,7 +118,7 @@ public class HelperFragmentDate extends Fragment{
     }
 
     /**
-     * Сллушатель для кнопок возвращения назад
+     * Слушатель для кнопок возвращения назад
      * @param btn Пережать элемент
      */
     @SuppressLint("NonConstantResourceId")

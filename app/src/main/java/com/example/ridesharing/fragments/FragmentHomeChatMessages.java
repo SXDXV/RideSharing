@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ridesharing.R;
 import com.example.ridesharing.commonClasses.ClassFirstLastItemDecorator;
 import com.example.ridesharing.commonClasses.ClassMessage;
@@ -43,6 +44,7 @@ public class FragmentHomeChatMessages extends Fragment{
 
     private ImageView backToChats;
     private ImageView sendMessageIcon;
+    private  ImageView avatar;
     private TextInputEditText messageInput;
     private TextView userName;
 
@@ -127,6 +129,10 @@ public class FragmentHomeChatMessages extends Fragment{
             sendMessage();
         });
 
+        userName.setOnClickListener(v ->{
+            loadFragmentFromTop(FragmentHomeChatProfileCheck.newInstance(bundleSet), "profile");
+        });
+
         return view;
     }
 
@@ -191,6 +197,12 @@ public class FragmentHomeChatMessages extends Fragment{
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ClassUser user = snapshot.getValue(ClassUser.class);
                 userName.setText(user.getName().toString());
+                if (!user.getAvatar().equals("")){
+                    Glide.with(getActivity()).load(user.getAvatar())
+                            .into(avatar);
+                }
+                bundleSet.putString("id", user.getUser_id());
+                bundleSet.putString("ChatId", chatName);
             }
 
             @Override
@@ -239,6 +251,7 @@ public class FragmentHomeChatMessages extends Fragment{
         messageInput = view.findViewById(R.id.fieldMessageSend);
         sendMessageIcon = view.findViewById(R.id.sendMessage);
         userName = view.findViewById(R.id.messages_chat_user_name);
+        avatar = view.findViewById(R.id.avatarIntoDialig);
     }
 
     /**

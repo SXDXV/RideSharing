@@ -1,5 +1,9 @@
 package com.example.ridesharing.commonClasses;
 
+
+/**
+ * Класс, отвечающий за создание экземпляра диалога
+ */
 public class ClassChats {
     private int imageRes;
     private String userName;

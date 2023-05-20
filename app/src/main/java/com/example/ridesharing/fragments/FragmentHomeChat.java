@@ -1,8 +1,6 @@
 package com.example.ridesharing.fragments;
 
 import android.os.Bundle;
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -63,7 +60,7 @@ public class FragmentHomeChat extends Fragment{
         rvChat = view.findViewById(R.id.recyclerChat);
         //cardChats = view.findViewById(R.id.chatsCard);
 
-        createOrdersList();
+        createChatsList();
 
         return view;
     }
@@ -71,7 +68,7 @@ public class FragmentHomeChat extends Fragment{
     /**
      * Создание листа путем получения данных с сервера
      */
-    public void createOrdersList() {
+    public void createChatsList() {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("chats");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -93,7 +90,7 @@ public class FragmentHomeChat extends Fragment{
                 }
                 messagesFill.sort(Comparator.comparingLong(ClassMessage::getTime));
                 Collections.reverse(messagesFill);
-                rvPublications(messagesFill);
+                rvChats(messagesFill);
             }
 
             @Override
@@ -107,7 +104,7 @@ public class FragmentHomeChat extends Fragment{
      * Метод заполнения RecyclerView
      * @param list Передать источник данных
      */
-    public void rvPublications(ArrayList<ClassMessage> list) {
+    public void rvChats(ArrayList<ClassMessage> list) {
         dialogs.clear();
         dialogs.addAll(list);
         RecyclerChatAdapter.OnChatClickListener publicationsClickListener = (dialogs, position) -> {
@@ -119,40 +116,6 @@ public class FragmentHomeChat extends Fragment{
         rvChat.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         rvChat.startAnimation(AnimationUtils.loadAnimation(getContext(),
                 R.anim.enter_from_down_recycler));
-    }
-
-    /**
-     * Анимация изменения размера
-     * @param view --
-     * @param width --
-     * @param height --
-     */
-    public void resizeHeight(View view, int width, int height){
-        ClassResizeAnimation resizeAnimation = new ClassResizeAnimation(view, width, height);
-        resizeAnimation.setDuration(400);
-        resizeAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-        resizeAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-//                ViewGroup.LayoutParams layoutParams = (ViewGroup.LayoutParams)
-//                        cardChats.getLayoutParams();
-//                layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-//                layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-//                cardChats.setLayoutParams(layoutParams);
-//                Log.d("animation", "Animation ended");
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        view.startAnimation(resizeAnimation);
     }
 
     /**

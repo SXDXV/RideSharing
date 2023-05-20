@@ -1,5 +1,8 @@
 package com.example.ridesharing.commonClasses;
 
+/**
+ * Класс, отвечающий за создание экземпляра сообщения
+ */
 public class ClassMessage {
     private String chat_id;
     private String sender;

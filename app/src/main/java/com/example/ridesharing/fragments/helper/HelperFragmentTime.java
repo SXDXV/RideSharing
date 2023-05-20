@@ -118,7 +118,7 @@ public class HelperFragmentTime extends Fragment{
     }
 
     /**
-     * Сллушатель для кнопок возвращения назад
+     * Слушатель для кнопок возвращения назад
      * @param btn Пережать элемент
      */
     @SuppressLint("NonConstantResourceId")
