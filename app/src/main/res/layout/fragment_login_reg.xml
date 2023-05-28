@@ -56,9 +56,10 @@
             app:boxCornerRadiusTopStart="40dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/textSearchFields"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="@style/textSearchFields" />
+                android:inputType="phone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

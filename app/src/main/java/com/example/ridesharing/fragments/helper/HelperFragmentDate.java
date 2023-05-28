@@ -22,6 +22,7 @@ import com.example.ridesharing.fragments.FragmentHomePublishMain;
 import com.example.ridesharing.fragments.FragmentHomeSearch;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Comparator;
@@ -31,18 +32,18 @@ import java.util.Comparator;
  * фрагмента. Предназначен для заполнения полей даты.
  */
 public class HelperFragmentDate extends Fragment{
-    View view;
+    private View view;
     private static final String VIEW_NAME = "HelperFragmentDate";
 
-    TextView fieldName;
-    String txtFieldName;
-    CalendarView calendarView;
-    String txtDate;
-    Button btnContinue;
-    ImageView backSearch;
+    private TextView fieldName;
+    private String txtFieldName;
+    private CalendarView calendarView;
+    private String txtDate;
+    private Button btnContinue;
+    private ImageView backSearch;
 
-    Bundle bundleGet;
-    Bundle bundleSet;
+    private Bundle bundleGet;
+    private Bundle bundleSet;
 
     /**
      * Метод, срабатывающий при создании фрагмента
@@ -63,7 +64,7 @@ public class HelperFragmentDate extends Fragment{
         bundleGet = getArguments();
         if (bundleGet != null) {
             txtFieldName = bundleGet.getString("FieldName");
-            txtDate = bundleGet.getString("FieldName");
+            txtDate = bundleGet.getString("FieldText");
             fieldName.setText(txtFieldName);
 
             calendarSet();
@@ -71,15 +72,16 @@ public class HelperFragmentDate extends Fragment{
 
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             String txtDateTransfer = String.valueOf(dayMonthValidation(dayOfMonth) + "-" + dayMonthValidation(month+1) + "-" + year);
-            Comparator<String> comparator = Comparator.naturalOrder();
-            int result = comparator.compare(txtDateTransfer, bundleGet.getString("FieldText"));
 
-            if (result < 0) {
+            LocalDate currentDate = LocalDate.now();
+            LocalDate selectedDate = LocalDate.of(year, month + 1, dayOfMonth);
+
+            if (selectedDate.compareTo(currentDate) < 0) {
                 calendarSet();
                 Toast toast = Toast.makeText(getContext(),
                         getResources().getString(R.string.text_invalid_date), Toast.LENGTH_SHORT);
                 toast.show();
-            } else if (result >= 0) {
+            } else {
                 txtDate = txtDateTransfer;
             }
         });

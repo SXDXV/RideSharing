@@ -153,7 +153,7 @@ public class FragmentHomeSearchResultOrder extends Fragment{
     }
 
     public void createTripList(){
-        DatabaseReference myRef = database.getReference("trips");
+        DatabaseReference myRef = database.getReference("trips/" + tripID);
 
         Map<String, Object> tripInfo = new HashMap<>();
         tripInfo.put(FragmentLoginAuth.userID, "passenger");
@@ -161,7 +161,7 @@ public class FragmentHomeSearchResultOrder extends Fragment{
         tripInfo.put("trip_id", tripID);
         tripInfo.put("status", true);
 
-        myRef.child(tripID).setValue(tripInfo);
+        myRef.updateChildren(tripInfo);
     }
 
     public void fillFields(ClassPublication publication){

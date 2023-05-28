@@ -146,11 +146,11 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/textSearchFields"
                             android:id="@+id/textEditProfilePhone"
+                            style="@style/textSearchFields"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            />
+                            android:inputType="phone" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
@@ -198,11 +198,11 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/textSearchFields"
                             android:id="@+id/textEditProfilePassport"
+                            style="@style/textSearchFields"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            />
+                            android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>

@@ -8,9 +8,11 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -40,8 +42,9 @@ public class FragmentHomeChat extends Fragment{
     private int viewHeight;
     private ArrayList<ClassMessage> dialogs = new ArrayList<ClassMessage>();
     private Bundle bundleSet = new Bundle();
-    private LinearLayout cardChats;
-    RecyclerView rvChat;
+    private TextView noChatsText;
+    private CardView noChatsCard;
+    private RecyclerView rvChat;
 
     /**
      * Констуктор класса фрагмента
@@ -57,8 +60,9 @@ public class FragmentHomeChat extends Fragment{
         bottomNavigationView.getMenu().getItem(2).setChecked(true);
         view = inflater.inflate(R.layout.fragment_home_chat, container, false);
         viewHeight = view.getLayoutParams().height;
+        noChatsCard = view.findViewById(R.id.noChatsCard);
+        noChatsText = view.findViewById(R.id.noChatsText);
         rvChat = view.findViewById(R.id.recyclerChat);
-        //cardChats = view.findViewById(R.id.chatsCard);
 
         createChatsList();
 
@@ -88,9 +92,14 @@ public class FragmentHomeChat extends Fragment{
                         }
                     }
                 }
-                messagesFill.sort(Comparator.comparingLong(ClassMessage::getTime));
-                Collections.reverse(messagesFill);
-                rvChats(messagesFill);
+                if (!(messagesFill.size() == 0)){
+                    resizeEmptyTrips(noChatsCard, 0,0);
+                    resizeEmptyTrips(noChatsText, 0,0);
+
+                    messagesFill.sort(Comparator.comparingLong(ClassMessage::getTime));
+                    Collections.reverse(messagesFill);
+                    rvChats(messagesFill);
+                }
             }
 
             @Override
@@ -116,6 +125,18 @@ public class FragmentHomeChat extends Fragment{
         rvChat.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         rvChat.startAnimation(AnimationUtils.loadAnimation(getContext(),
                 R.anim.enter_from_down_recycler));
+    }
+
+    /**
+     * Анимация изменения размера
+     * @param view --
+     * @param width --
+     * @param height --
+     */
+    public void resizeEmptyTrips(View view, int width, int height){
+        ClassResizeAnimation resizeAnimation = new ClassResizeAnimation(view, width, height);
+        resizeAnimation.setDuration(400);
+        view.startAnimation(resizeAnimation);
     }
 
     /**

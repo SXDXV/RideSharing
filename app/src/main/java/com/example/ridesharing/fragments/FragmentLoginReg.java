@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * Класс фрагмента регистрации
@@ -49,6 +50,7 @@ public class FragmentLoginReg extends Fragment {
     private String emailTxt;
     private String passTxt;
     private String confirmpassTxt;
+    private String phoneRegex = "(\\+7|8)\\d{10}";
 
     /**
      * Конструктор класса фрагмента поиска
@@ -104,28 +106,33 @@ public class FragmentLoginReg extends Fragment {
                 !name.equals("") &&
                 !phone.equals("") &&
                 !confirmpass.equals("")) {
-            if (password.equals(confirmpass)){
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(getActivity(), task -> {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                userID = user.getUid();
-                                Log.d(BASE_AUTH, "createUserWithEmail:success");
-                                realtimeDatabaseSetData(userID, "", name, email, phone);
-                                swipeFragment();
-                            } else {
-                                Toast toast = Toast.makeText(getContext(),
-                                        getResources().getString(R.string.toast_invalid_data), Toast.LENGTH_LONG);
-                                toast.show();
-                            }
-                        });
-            }else {
+            if (Pattern.matches(phoneRegex, phone)){
+                if (password.equals(confirmpass)){
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(getActivity(), task -> {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    userID = user.getUid();
+                                    Log.d(BASE_AUTH, "createUserWithEmail:success");
+                                    realtimeDatabaseSetData(userID, "", name, email, phone);
+                                    swipeFragment();
+                                } else {
+                                    Toast toast = Toast.makeText(getContext(),
+                                            getResources().getString(R.string.toast_invalid_data), Toast.LENGTH_LONG);
+                                    toast.show();
+                                }
+                            });
+                } else {
+                    Toast toast = Toast.makeText(getContext(),
+                            getResources().getString(R.string.toast_password_valid), Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            } else {
                 Toast toast = Toast.makeText(getContext(),
-                        getResources().getString(R.string.toast_password_valid), Toast.LENGTH_LONG);
+                        getResources().getString(R.string.toast_phone_valid), Toast.LENGTH_LONG);
                 toast.show();
             }
-
-        }else {
+        } else {
             Toast toast = Toast.makeText(getContext(),
                     getResources().getString(R.string.toast_empty_data), Toast.LENGTH_LONG);
             toast.show();
@@ -182,11 +189,11 @@ public class FragmentLoginReg extends Fragment {
         passInput = view.findViewById(R.id.inputPasswordReg);
         confirmpassInput = view.findViewById(R.id.inputPasswordConfirmReg);
 
-        nameTxt = nameInput.getEditText().getText().toString();
-        phoneTxt = phoneInput.getEditText().getText().toString();
-        emailTxt = emailInput.getEditText().getText().toString();
-        passTxt = passInput.getEditText().getText().toString();
-        confirmpassTxt = confirmpassInput.getEditText().getText().toString();
+        nameTxt = nameInput.getEditText().getText().toString().trim();
+        phoneTxt = phoneInput.getEditText().getText().toString().trim();
+        emailTxt = emailInput.getEditText().getText().toString().trim();
+        passTxt = passInput.getEditText().getText().toString().trim();
+        confirmpassTxt = confirmpassInput.getEditText().getText().toString().trim();
     }
 
     /**

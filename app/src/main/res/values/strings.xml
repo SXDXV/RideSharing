@@ -45,11 +45,13 @@
     <string name="text_talk">Are you talkative?</string>
     <string name="text_smoking">Сan smoke in the car?</string>
     <string name="no_trips">So far there are no trips</string>
+    <string name="no_chats">You have not dialogs yet</string>
     <string name="no_your_publications">You haven\'t posted anything yet</string>
 
     <string name="toast_invalid_data">There were problems with the entrance, please check the correctness of the entered data</string>
     <string name="toast_empty_data">You did not fill in all required fields!</string>
     <string name="toast_password_valid">The entered passwords do not match</string>
+    <string name="toast_phone_valid">The entered phone has not valid value</string>
     <string name="toast_your_seat_is_reserved">Your seat is reserved. Check your dialogues.</string>
 
     <string name="field_from">From</string>

@@ -1,6 +1,8 @@
 package com.example.ridesharing.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -174,6 +176,21 @@ public class FragmentHomeSearch extends Fragment{
 
         };
         btnContinue.setOnClickListener(listenerContinue);
+
+        /**
+         * Переход в браузер на страницу демонстрации проекта
+         */
+        View.OnClickListener listenerToBehance = v -> {
+            try {
+                String url = "https://www.behance.net/gallery/171511853/RideSharing-travel-APP";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        };
+        tvMap.setOnClickListener(listenerToBehance);
+        ivMap.setOnClickListener(listenerToBehance);
         return view;
     }
 
@@ -329,6 +346,9 @@ public class FragmentHomeSearch extends Fragment{
         pickUp = view.findViewById(R.id.checkBoxPickUp);
         btnContinue = view.findViewById(R.id.continueBtnSearch);
         peoplesText = view.findViewById(R.id.textViewCountPeople);
+
+        tvMap = view.findViewById(R.id.textViewMap);
+        ivMap = view.findViewById(R.id.imageViewMap);
 
         fromInput = view.findViewById(R.id.outlinedTextFieldFromSearch);
         toInput = view.findViewById(R.id.outlinedTextFieldToSearch);

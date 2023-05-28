@@ -46,11 +46,13 @@
     <string name="text_talk">С вами можно будет поговорить</string>
     <string name="text_smoking">Можно курить в машине</string>
     <string name="no_trips">У вас пока нет поездок</string>
+    <string name="no_chats">У вас пока нет диалогов</string>
     <string name="no_your_publications">Вы пока ничего не опубликовали</string>
 
     <string name="toast_invalid_data">Возникли проблемы со входом. Проверьте правильность введенных данных.</string>
     <string name="toast_empty_data">Вы не заполнили все обязательные поля.</string>
     <string name="toast_password_valid">Вы ввели неверный пароль.</string>
+    <string name="toast_phone_valid">Введенный номер телефона не является верным</string>
     <string name="toast_your_seat_is_reserved">Вы забронировали место. Проверьте свои диалоги.</string>
 
     <string name="field_from">Откуда</string>
