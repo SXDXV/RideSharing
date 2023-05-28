@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,7 @@ public class FragmentLoginAuth extends Fragment {
     private String emailTxt;
     private String passTxt;
 
+    private static final String PREF_FIRST_RUN = "first_run";
     private static final String APP_PREFERENCES = "uidPref";
     private static final String APP_PREFERENCES_USERID = "userID";
     private SharedPreferences mSettings;
@@ -68,6 +70,11 @@ public class FragmentLoginAuth extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_login_auth, container, false);
         mSettings = getContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
+        if (isFirstRun()) {
+            clearSharedPreferences();
+            setFirstRunFlag(false);
+        }
 
         if(mSettings.contains(APP_PREFERENCES_USERID)) {
             userID = mSettings.getString(APP_PREFERENCES_USERID, "");
@@ -132,6 +139,24 @@ public class FragmentLoginAuth extends Fragment {
             toast.show();
         }
 
+    }
+
+    private boolean isFirstRun() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        return sharedPreferences.getBoolean(PREF_FIRST_RUN, true);
+    }
+
+    private void setFirstRunFlag(boolean isFirstRun) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(PREF_FIRST_RUN, isFirstRun);
+        editor.apply();
+    }
+
+    private void clearSharedPreferences() {
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.clear();
+        editor.apply();
     }
 
     /**
